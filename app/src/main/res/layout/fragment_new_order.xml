@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/item_province"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/province"
+            android:textSize="24sp"/>
+
+        <Spinner
+            android:id="@+id/provinces"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/item_province"
+        android:background="#666666"/>
+
+    <LinearLayout
+        android:id="@+id/item_city"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_below="@id/line"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/city"
+            android:textSize="24sp"/>
+
+        <Spinner
+            android:id="@+id/cities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

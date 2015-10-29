@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Apple</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_order">新增订单</string>
+    <string name="show_orders">订单一览</string>
+    <string name="other">其他选项</string>
+
+    <!--fragment new order-->
+    <string name="province">省份</string>
+    <string name="city">城市</string>
+</resources>

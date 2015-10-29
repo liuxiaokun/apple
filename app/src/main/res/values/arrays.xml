@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="provinces">
+        <item>山东省</item>
+        <item>上海市</item>
+        <item>江苏省</item>
+        <item>湖北省</item>
+    </string-array>
+
+    <string-array name="shandong_cities">
+        <item>烟台市</item>
+        <item>青岛市</item>
+        <item>淄博市</item>
+        <item>威海市</item>
+        <item>菏泽市</item>
+        <item>临沂市</item>
+        <item>威海市</item>
+    </string-array>
+</resources>
