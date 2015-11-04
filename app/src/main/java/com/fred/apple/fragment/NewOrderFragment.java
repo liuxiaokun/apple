@@ -18,39 +18,20 @@ import com.fred.apple.R;
  */
 public class NewOrderFragment extends Fragment {
 
-    private ArrayAdapter mAdapterProvinces;
-    private Spinner mSpinnerProvinces;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapterProvinces = ArrayAdapter.createFromResource(getActivity(), R.array.provinces, android.R.layout
-                .simple_spinner_item);
-        mAdapterProvinces.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
 
         View view = inflater.inflate(R.layout.fragment_new_order, container, false);
 
-        mSpinnerProvinces = (Spinner) view.findViewById(R.id.provinces);
-        mSpinnerProvinces.setAdapter(mAdapterProvinces);
-
-        mSpinnerProvinces.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         return view;
     }
