@@ -6,6 +6,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.fred.apple.fragment.NewOrderFragment;
+import com.fred.apple.fragment.OrderListFragment;
+import com.fred.apple.fragment.OtherFragment;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -20,6 +22,8 @@ public class MainActivity extends Activity {
     private RadioGroup mRadioGroup;
 
     private NewOrderFragment mNewOrderFragment;
+    private OrderListFragment mOrderListFragment;
+    private OtherFragment mOtherFragment;
 
 
     @Override
@@ -29,15 +33,13 @@ public class MainActivity extends Activity {
 
         initUi();
         initEvent();
+        mRadioButtonNewOrder.performClick();
     }
 
     private void initUi() {
         mRadioButtonNewOrder = (RadioButton) this.findViewById(R.id.new_order);
         mRadioButtonShowOrders = (RadioButton) this.findViewById(R.id.show_orders);
         mRadioGroup = (RadioGroup) this.findViewById(R.id.tab_bottom);
-
-        mNewOrderFragment = new NewOrderFragment();
-
     }
 
     private void initEvent() {
@@ -60,7 +62,22 @@ public class MainActivity extends Activity {
 
                     case R.id.show_orders:
 
+                        if (null == mOrderListFragment) {
+                            mOrderListFragment = new OrderListFragment();
+                        }
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.main_content, mOrderListFragment).commit();
                         break;
+
+                    case R.id.others:
+
+                        if (null == mOtherFragment) {
+                            mOtherFragment = new OtherFragment();
+                        }
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.main_content, mOtherFragment).commit();
+                        break;
+
                     default:
                         break;
 
@@ -68,7 +85,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        mRadioButtonNewOrder.performClick();
     }
 
 

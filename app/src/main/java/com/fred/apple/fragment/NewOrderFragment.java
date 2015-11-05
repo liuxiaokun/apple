@@ -29,10 +29,7 @@ public class NewOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.fragment_new_order, container, false);
-
-
         return view;
     }
 }
