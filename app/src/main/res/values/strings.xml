@@ -11,7 +11,7 @@
     <string name="address">地址</string>
     <string name="name">姓名</string>
     <string name="phone">手机</string>
-    <string name="specifications">规格</string>
+    <string name="type">规格</string>
     <string name="quantity">数量</string>
     <string name="place_order">下单</string>
 </resources>
