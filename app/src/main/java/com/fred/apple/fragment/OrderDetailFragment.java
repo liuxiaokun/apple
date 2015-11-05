@@ -2,13 +2,13 @@ package com.fred.apple.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fred.apple.R;
+import com.fred.apple.bean.Order;
 
 /**
  * @author Fred Liu (liuxiaokun@lvmama.com)
@@ -17,7 +17,6 @@ import com.fred.apple.R;
  */
 public class OrderDetailFragment extends Fragment {
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -25,7 +24,8 @@ public class OrderDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_detail, container, false);
 
         TextView orderId = (TextView) view.findViewById(R.id.order_id);
-        orderId.setText(getArguments().getLong("order_id") + "");
+        Order order = (Order) getArguments().getSerializable("order");
+        orderId.setText(String.valueOf(order.getOrderId()));
 
         return view;
     }

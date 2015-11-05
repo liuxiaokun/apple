@@ -2,10 +2,12 @@ package com.fred.apple.fragment;
 
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,7 +43,6 @@ public class OrderListFragment extends ListFragment {
         FragmentTransaction fragmentTransaction = getFragmentManager()
                 .beginTransaction();
         fragmentTransaction.replace(R.id.main_content, orderDetailFragment);
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -74,7 +75,14 @@ public class OrderListFragment extends ListFragment {
             name.setText(order.getName());
             phone.setText(order.getPhone());
             type.setText(order.getType());
-            hasSent.setText(String.valueOf(order.isHasSent()));
+
+            if (order.isHasSent()) {
+                hasSent.setText("已经发货");
+                hasSent.setTextColor(Color.parseColor("#000000"));
+            } else {
+                hasSent.setText("尚未发货");
+                hasSent.setTextColor(Color.parseColor("#CC0033"));
+            }
 
             return convertView;
         }
