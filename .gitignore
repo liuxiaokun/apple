@@ -9,6 +9,9 @@
 
 # Files for the Dalvik VM
 *.dex
+app/app.iml
+app/build.gradle
+app/proguard-rules.pro
 
 # Java class files
 *.class
@@ -22,3 +25,9 @@ proguard/
 
 # Log Files
 *.log
+Apple.iml
+gradlew
+gradlew.bat
+gradle.properties
+settings.gradle
+/gradle
