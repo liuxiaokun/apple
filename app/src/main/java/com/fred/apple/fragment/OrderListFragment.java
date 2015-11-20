@@ -26,8 +26,8 @@ public class OrderListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OrderAdapter adapter = new OrderAdapter(Order.getOrders());
-        setListAdapter(adapter);
+//        OrderAdapter adapter = new OrderAdapter(Order.getOrders());
+//        setListAdapter(adapter);
     }
 
     @Override
@@ -71,17 +71,14 @@ public class OrderListFragment extends ListFragment {
             TextView type = (TextView) convertView.findViewById(R.id.type);
             TextView hasSent = (TextView) convertView.findViewById(R.id.has_sent);
 
-            name.setText(order.getName());
-            phone.setText(order.getPhone());
-            type.setText(order.getType());
 
-            if (order.isHasSent()) {
-                hasSent.setText("已经发货");
-                hasSent.setTextColor(Color.parseColor("#000000"));
-            } else {
-                hasSent.setText("尚未发货");
-                hasSent.setTextColor(Color.parseColor("#CC0033"));
-            }
+//            if (order.isHasSent()) {
+//                hasSent.setText("已经发货");
+//                hasSent.setTextColor(Color.parseColor("#000000"));
+//            } else {
+//                hasSent.setText("尚未发货");
+//                hasSent.setTextColor(Color.parseColor("#CC0033"));
+//            }
 
             return convertView;
         }

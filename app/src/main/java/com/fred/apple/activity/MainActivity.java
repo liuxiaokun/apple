@@ -1,14 +1,18 @@
 package com.fred.apple.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.fred.apple.R;
+import com.fred.apple.bean.Province;
+import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.fragment.NewOrderFragment;
 import com.fred.apple.fragment.OrderListFragment;
 import com.fred.apple.fragment.OtherFragment;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+
+import java.sql.SQLException;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -16,7 +20,7 @@ import com.fred.apple.fragment.OtherFragment;
  * @since 2015/10/27 13:22
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private RadioButton mRadioButtonNewOrder;
     private RadioButton mRadioButtonShowOrders;
@@ -32,6 +36,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Province province = new Province();
+        province.setProvinceId(1);
+        province.setEnable(1);
+        province.setProvinceName("山东");
+        try {
+            OpenHelperManager.getHelper(this, DatabaseHelper.class).getProvinceDao().create(province);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         initUi();
         initEvent();
         mRadioButtonNewOrder.performClick();

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.fred.apple.R;
-import com.fred.apple.database.DbHelper;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -40,7 +39,10 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.new_order:
-                new DbHelper(getActivity(), "apple.db3", 1).getReadableDatabase();
+                break;
+
+            default:
+                break;
         }
     }
 }
