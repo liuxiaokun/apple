@@ -1,10 +1,11 @@
-package com.fred.apple;
+package com.fred.apple.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.fred.apple.R;
 import com.fred.apple.fragment.NewOrderFragment;
 import com.fred.apple.fragment.OrderListFragment;
 import com.fred.apple.fragment.OtherFragment;
