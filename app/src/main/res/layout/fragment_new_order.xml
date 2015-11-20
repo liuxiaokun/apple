@@ -184,6 +184,7 @@
                 android:background="#666666"/>
 
             <Button
+                android:id="@+id/new_order"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/place_order"/>

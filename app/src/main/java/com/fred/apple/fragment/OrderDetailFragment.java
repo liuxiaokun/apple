@@ -25,7 +25,7 @@ public class OrderDetailFragment extends Fragment {
 
         TextView orderId = (TextView) view.findViewById(R.id.order_id);
         Order order = (Order) getArguments().getSerializable("order");
-        orderId.setText(String.valueOf(order.getOrderId()));
+//        orderId.setText(String.valueOf(order.getOrderId()));
 
         return view;
     }
