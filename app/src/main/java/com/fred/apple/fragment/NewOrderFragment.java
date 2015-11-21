@@ -11,21 +11,22 @@ import android.widget.Button;
 
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
+import com.fred.apple.view.HeadView;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
- * @version 1.0
+ * @version 1.0.0
  * @since 2015/10/27 14:57
  */
 public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
     private MainActivity mMainActivity;
+    private HeadView mHeadView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMainActivity = ((MainActivity) getActivity());
-
     }
 
     @Override
@@ -41,6 +42,8 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
         Button newOrder = (Button) view.findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
+        mHeadView = ((HeadView) view.findViewById(R.id.head_view));
+        mHeadView.setTitleText(getResources().getString(R.string.new_order));
         return view;
     }
 

@@ -9,7 +9,6 @@
 
 # Files for the Dalvik VM
 *.dex
-app/app.iml
 app/proguard-rules.pro
 
 # Java class files

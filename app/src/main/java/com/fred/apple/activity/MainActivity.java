@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Log.i("fred", DensityUtil.px2dp(this, 1)+"");
+        Log.i("fred1", DensityUtil.px2dp(this, 1)+"");
 //        Province province = new Province();
 //        province.setProvinceId(1);
 //        province.setEnable(1);
