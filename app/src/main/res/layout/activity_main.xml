@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <View
+        android:background="@color/color_999"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
 
     <RadioGroup
         android:id="@+id/tab_bottom"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="96dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/new_order"
             style="@style/tab_radio_style"
-            android:text="@string/new_order"/>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#666666"/>
+            android:text="@string/new_order" />
 
         <RadioButton
             android:id="@+id/show_orders"
             style="@style/tab_radio_style"
-            android:text="@string/show_orders"/>
+            android:text="@string/show_orders" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#666666"/>
+        <RadioButton
+            android:id="@+id/setting"
+            style="@style/tab_radio_style"
+            android:text="@string/setting" />
 
         <RadioButton
             android:id="@+id/others"
             style="@style/tab_radio_style"
-            android:text="@string/other"/>
+            android:text="@string/other" />
 
     </RadioGroup>
 
-    <FrameLayout
-        android:id="@+id/main_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/tab_bottom"
-        android:layout_alignParentTop="true"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@id/tab_bottom"
-        android:background="#666666"/>
-</RelativeLayout>
+</LinearLayout>

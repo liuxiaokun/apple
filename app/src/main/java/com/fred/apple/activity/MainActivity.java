@@ -1,6 +1,7 @@
 package com.fred.apple.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -10,6 +11,8 @@ import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.fragment.NewOrderFragment;
 import com.fred.apple.fragment.OrderListFragment;
 import com.fred.apple.fragment.OtherFragment;
+import com.fred.apple.util.DensityUtil;
+import com.fred.apple.util.ScreenUtil;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.sql.SQLException;
@@ -36,15 +39,16 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Province province = new Province();
-        province.setProvinceId(1);
-        province.setEnable(1);
-        province.setProvinceName("山东");
-        try {
-            OpenHelperManager.getHelper(this, DatabaseHelper.class).getProvinceDao().create(province);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        Log.i("fred", DensityUtil.px2dp(this, 1)+"");
+//        Province province = new Province();
+//        province.setProvinceId(1);
+//        province.setEnable(1);
+//        province.setProvinceName("山东");
+//        try {
+//            OpenHelperManager.getHelper(this, DatabaseHelper.class).getProvinceDao().create(province);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         initUi();
         initEvent();
         mRadioButtonNewOrder.performClick();

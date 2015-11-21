@@ -12,7 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 /**
- * @author Fred Liu (liuxiaokun@lvmama.com)
+ * @author Fred Liu (liuxiaokun0410@gmail.com)
  * @version 5.0
  * @since 2015/11/20 17:27
  */

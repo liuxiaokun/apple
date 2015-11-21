@@ -14,7 +14,7 @@ public class DensityUtil {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static int dp2pGx(Context context, float dpVal) {
+    public static int dp2px(Context context, float dpVal) {
 
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, context.getResources().getDisplayMetrics());

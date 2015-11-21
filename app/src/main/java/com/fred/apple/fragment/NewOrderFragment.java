@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.fred.apple.R;
+import com.fred.apple.activity.MainActivity;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -16,10 +19,12 @@ import com.fred.apple.R;
  */
 public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
+    private MainActivity mMainActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mMainActivity = ((MainActivity) getActivity());
 
     }
 
@@ -28,6 +33,12 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_new_order, container, false);
+        AutoCompleteTextView province = ((AutoCompleteTextView) view.findViewById(R.id.edit_province));
+
+        String[] arr = {"山东省", "山西省", "哈哈哈哈"};
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mMainActivity, android.R.layout.simple_list_item_1, arr);
+        province.setAdapter(arrayAdapter);
+
         Button newOrder = (Button) view.findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
         return view;

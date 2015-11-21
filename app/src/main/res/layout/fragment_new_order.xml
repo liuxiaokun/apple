@@ -7,17 +7,17 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/item_province"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -27,7 +27,9 @@
                     android:text="@string/province"
                     android:textSize="24sp"/>
 
-                <EditText
+                <AutoCompleteTextView
+                    android:id="@+id/edit_province"
+                    android:completionThreshold="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -35,13 +37,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <LinearLayout
                 android:id="@+id/item_city"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -51,7 +53,7 @@
                     android:text="@string/city"
                     android:textSize="24sp"/>
 
-                <EditText
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -59,13 +61,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <LinearLayout
                 android:id="@+id/item_address"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -75,7 +77,7 @@
                     android:text="@string/address"
                     android:textSize="24sp"/>
 
-                <EditText
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -83,13 +85,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <LinearLayout
                 android:id="@+id/item_name"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -107,14 +109,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
 
             <LinearLayout
                 android:id="@+id/item_phone"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -132,13 +134,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <LinearLayout
                 android:id="@+id/item_specifications"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -156,13 +158,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <LinearLayout
                 android:id="@+id/item_quantity"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="@dimen/order_item_common"
                 android:orientation="horizontal">
 
                 <TextView
@@ -180,8 +182,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#666666"/>
+                android:layout_height="1px"
+                android:background="@color/color_999"/>
 
             <Button
                 android:id="@+id/new_order"

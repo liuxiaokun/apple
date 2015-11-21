@@ -6,4 +6,7 @@
 
     <color name="color_white">#ffffff</color>
     <color name="color_grey">#666666</color>
+    <color name="color_999">#999</color>
+    <color name="color_096">#9096</color>
+
 </resources>
