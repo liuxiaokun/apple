@@ -11,8 +11,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.fred.apple.R;
+import com.fred.apple.activity.MainActivity;
 import com.fred.apple.bean.Order;
+import com.fred.apple.database.DatabaseHelper;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -22,12 +27,29 @@ import java.util.List;
  */
 public class OrderListFragment extends ListFragment {
 
+    private MainActivity mMainActivity;
+
+    private DatabaseHelper mDatabaseHelper;
+
+    private Dao<Order, Integer> orderDao;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        OrderAdapter adapter = new OrderAdapter(Order.getOrders());
-//        setListAdapter(adapter);
+        mMainActivity = ((MainActivity) getActivity());
+
+        mDatabaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
+
+        orderDao = mDatabaseHelper.getOrderDao();
+
+        OrderAdapter adapter = null;
+        try {
+            adapter = new OrderAdapter(orderDao.queryForAll());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        setListAdapter(adapter);
     }
 
     @Override
@@ -71,14 +93,17 @@ public class OrderListFragment extends ListFragment {
             TextView type = (TextView) convertView.findViewById(R.id.type);
             TextView hasSent = (TextView) convertView.findViewById(R.id.has_sent);
 
+            name.setText(order.getUserName());
+            phone.setText(order.getTelephone());
+            type.setText(order.getType());
 
-//            if (order.isHasSent()) {
-//                hasSent.setText("已经发货");
-//                hasSent.setTextColor(Color.parseColor("#000000"));
-//            } else {
-//                hasSent.setText("尚未发货");
-//                hasSent.setTextColor(Color.parseColor("#CC0033"));
-//            }
+            if (order.isHasSent()) {
+                hasSent.setText("已经发货");
+                hasSent.setTextColor(Color.parseColor("#000000"));
+            } else {
+                hasSent.setText("尚未发货");
+                hasSent.setTextColor(Color.parseColor("#CC0033"));
+            }
 
             return convertView;
         }

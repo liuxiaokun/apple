@@ -33,4 +33,11 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="edit_item_title_style">
+        <item name="android:layout_width">@dimen/order_item_text_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/order_item_text_size</item>
+    </style>
+
 </resources>

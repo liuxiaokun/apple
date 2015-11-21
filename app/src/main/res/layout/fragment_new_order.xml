@@ -28,11 +28,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/province"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/province" />
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_province"
@@ -50,11 +47,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/city"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/city" />
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_city"
@@ -72,15 +66,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/area"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/area" />
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_area"
-                    style="@style/edit_item_style"/>
+                    style="@style/edit_item_style" />
 
             </LinearLayout>
 
@@ -93,14 +84,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/address"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/address" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/edit_"
+                <EditText
+                    android:id="@+id/edit_address"
                     style="@style/edit_item_style" />
 
             </LinearLayout>
@@ -114,15 +102,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/name"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/name" />
 
                 <EditText
                     android:id="@+id/edit_name"
-                    style="@style/edit_item_style"/>
+                    style="@style/edit_item_style" />
 
             </LinearLayout>
 
@@ -135,14 +120,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/phone"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/phone" />
 
                 <EditText
-                    android:id="@+id/eidt_phone"
+                    android:id="@+id/edit_phone"
                     style="@style/edit_item_style"
                     android:inputType="phone" />
 
@@ -157,11 +139,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/type"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/type" />
 
                 <EditText
                     android:id="@+id/edit_type"
@@ -178,11 +157,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="@dimen/order_item_text_width"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/quantity"
-                    android:textSize="@dimen/order_item_text_size" />
+                    style="@style/edit_item_title_style"
+                    android:text="@string/quantity" />
 
                 <EditText
                     android:id="@+id/edit_qty"
@@ -198,13 +174,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="25dp"
-                android:textSize="18sp"
-                android:textColor="@color/color_white"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="26dp"
                 android:background="@drawable/new_order_button_selector"
-                android:text="@string/place_order" />
+                android:text="@string/place_order"
+                android:textColor="@color/color_white"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

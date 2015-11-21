@@ -20,7 +20,7 @@ public class Province implements Serializable {
     private String provinceName;
 
     @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "1")
-    private Integer enable;
+    private boolean enable;
 
     public Province() {
         // ORMLite needs a no-arg constructor
@@ -42,11 +42,11 @@ public class Province implements Serializable {
         this.provinceName = provinceName;
     }
 
-    public Integer getEnable() {
+    public boolean isEnable() {
         return enable;
     }
 
-    public void setEnable(Integer enable) {
+    public void setEnable(boolean enable) {
         this.enable = enable;
     }
 }

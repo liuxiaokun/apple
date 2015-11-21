@@ -3,8 +3,8 @@ package com.fred.apple.bean;
 import java.io.Serializable;
 
 /**
- * @author Fred Liu (liuxiaokun@lvmama.com)
- * @version 5.0
+ * @author Fred Liu (liuxiaokun0410@gmail.com)
+ * @version 1.0.0
  * @since 2015/11/20 17:04
  */
 public class OptionValue implements Serializable {

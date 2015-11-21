@@ -23,7 +23,7 @@ public class Area implements Serializable {
     private Integer cityId;
 
     @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "1")
-    private Integer enable;
+    private boolean enable;
 
     public Area() {
         // ORMLite needs a no-arg constructor
@@ -51,5 +51,13 @@ public class Area implements Serializable {
 
     public void setCityId(Integer cityId) {
         this.cityId = cityId;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }

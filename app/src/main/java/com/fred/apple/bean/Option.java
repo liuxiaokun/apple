@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
- * @version 5.0
+ * @version 1.0.0
  * @since 2015/11/20 17:02
  */
 public class Option implements Serializable {

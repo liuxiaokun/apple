@@ -9,7 +9,7 @@
     <!--fragment new order-->
     <string name="province">省份</string>
     <string name="city">城市</string>
-    <string name="area">地区</string>
+    <string name="area">区县</string>
     <string name="address">地址</string>
     <string name="name">姓名</string>
     <string name="phone">手机</string>
