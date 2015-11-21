@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
+import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 
 /**
@@ -53,6 +54,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
             case R.id.new_order:
+                ToastUtil.shortShow(mMainActivity, " dianji");
                 break;
 
             default:

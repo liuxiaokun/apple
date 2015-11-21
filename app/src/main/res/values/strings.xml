@@ -15,5 +15,5 @@
     <string name="phone">手机</string>
     <string name="type">规格</string>
     <string name="quantity">数量</string>
-    <string name="place_order">下单</string>
+    <string name="place_order">提交订单</string>
 </resources>

@@ -1,17 +1,34 @@
 package com.fred.apple.bean;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
- * @version 5.0
+ * @version 1.0.0
  * @since 2015/11/20 14:50
  */
+@DatabaseTable(tableName = "city")
 public class City implements Serializable {
 
+    @DatabaseField(columnName = "city_id", id = true)
     private Integer cityId;
+
+    @DatabaseField(columnName = "city_name", canBeNull = false)
     private String cityName;
+
+    @DatabaseField(columnName = "province_id", canBeNull = false)
     private Integer provinceId;
+
+    @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "1")
+    private Integer enable;
+
+    public City() {
+        // ORMLite needs a no-arg constructor
+
+    }
 
     public Integer getCityId() {
         return cityId;

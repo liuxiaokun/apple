@@ -6,15 +6,15 @@
     android:focusableInTouchMode="true">
 
     <com.fred.apple.view.HeadView
-        android:layout_alignParentTop="true"
         android:id="@+id/head_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <ScrollView
-        android:layout_below="@id/head_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,16 +36,12 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_province"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/edit_item_style"
                     android:completionThreshold="1" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_city"
@@ -62,16 +58,12 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:completionThreshold="1"/>
+                    style="@style/edit_item_style"
+                    android:completionThreshold="1" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_area"
@@ -88,15 +80,11 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_area"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    style="@style/edit_item_style"/>
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_address"
@@ -113,15 +101,11 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    style="@style/edit_item_style" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_name"
@@ -137,16 +121,12 @@
                     android:textSize="@dimen/order_item_text_size" />
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:id="@+id/edit_name"
+                    style="@style/edit_item_style"/>
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
-
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_phone"
@@ -163,16 +143,12 @@
 
                 <EditText
                     android:id="@+id/eidt_phone"
-                    android:inputType="phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    style="@style/edit_item_style"
+                    android:inputType="phone" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_specifications"
@@ -189,15 +165,11 @@
 
                 <EditText
                     android:id="@+id/edit_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    style="@style/edit_item_style" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <LinearLayout
                 android:id="@+id/item_quantity"
@@ -214,22 +186,24 @@
 
                 <EditText
                     android:id="@+id/edit_qty"
-                    android:layout_width="match_parent"
-                    android:inputType="number"
-                    android:layout_height="match_parent" />
+                    style="@style/edit_item_style"
+                    android:inputType="number" />
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/color_999" />
+            <include layout="@layout/line" />
 
             <Button
                 android:id="@+id/new_order"
-                android:background="@drawable/new_order_button_selector"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="25dp"
+                android:textSize="18sp"
+                android:textColor="@color/color_white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/new_order_button_selector"
                 android:text="@string/place_order" />
 
         </LinearLayout>
