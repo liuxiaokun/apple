@@ -19,7 +19,7 @@ public class Province implements Serializable {
     @DatabaseField(columnName = "province_name", canBeNull = false)
     private String provinceName;
 
-    @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "1")
+    @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "true")
     private boolean enable;
 
     public Province() {

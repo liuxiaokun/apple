@@ -22,7 +22,7 @@ public class Area implements Serializable {
     @DatabaseField(columnName = "city_id", canBeNull = false)
     private Integer cityId;
 
-    @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "1")
+    @DatabaseField(columnName = "enable", canBeNull = false, defaultValue = "true")
     private boolean enable;
 
     public Area() {

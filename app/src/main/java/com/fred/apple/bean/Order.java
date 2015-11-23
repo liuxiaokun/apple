@@ -39,10 +39,10 @@ public class Order implements Serializable {
     @DatabaseField(columnName = "telephone", canBeNull = false)
     private String telephone;
 
-    @DatabaseField(columnName = "has_sent", canBeNull = false, defaultValue = "0")
+    @DatabaseField(columnName = "has_sent", canBeNull = false, defaultValue = "false")
     private boolean hasSent;
 
-    @DatabaseField(columnName = "has_paid", canBeNull = false, defaultValue = "1")
+    @DatabaseField(columnName = "has_paid", canBeNull = false, defaultValue = "true")
     private boolean hasPaid;
 
     @DatabaseField(columnName = "quantity", canBeNull = false)

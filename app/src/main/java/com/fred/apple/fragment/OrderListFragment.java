@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -91,18 +92,20 @@ public class OrderListFragment extends ListFragment {
             TextView name = (TextView) convertView.findViewById(R.id.name);
             TextView phone = (TextView) convertView.findViewById(R.id.phone);
             TextView type = (TextView) convertView.findViewById(R.id.type);
-            TextView hasSent = (TextView) convertView.findViewById(R.id.has_sent);
+            TextView address = (TextView) convertView.findViewById(R.id.address);
+            Button send = (Button) convertView.findViewById(R.id.has_sent);
+
+            address.setText(order.getProvince() + order.getCity() + order.getArea() + order.getAddress());
 
             name.setText(order.getUserName());
             phone.setText(order.getTelephone());
-            type.setText(order.getType());
+            type.setText(order.getType() + "*" + order.getQuantity());
 
             if (order.isHasSent()) {
-                hasSent.setText("已经发货");
-                hasSent.setTextColor(Color.parseColor("#000000"));
+                send.setText("对号");
+                send.setClickable(false);
             } else {
-                hasSent.setText("尚未发货");
-                hasSent.setTextColor(Color.parseColor("#CC0033"));
+                send.setText("发货");
             }
 
             return convertView;

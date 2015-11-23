@@ -90,6 +90,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         }
 
         int size = provinces.size();
+        Log.i("fredsize", size + "");
         String[] provincesArray = new String[size];
 
         for (int i = 0; i < size; i++) {
