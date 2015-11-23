@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:dividerHeight="1px"
-        android:drawSelectorOnTop="true"/>
+        android:dividerHeight="1px"/>
 
 </LinearLayout>

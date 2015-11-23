@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
+import com.fred.apple.bean.Area;
 import com.fred.apple.bean.City;
 import com.fred.apple.bean.Order;
 import com.fred.apple.bean.Province;
@@ -36,7 +37,6 @@ import java.util.List;
 public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
     private MainActivity mMainActivity;
-    private DatabaseHelper mDatabaseHelper;
 
     private AutoCompleteTextView mEditProvince;
     private AutoCompleteTextView mEditCity;
@@ -49,16 +49,18 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
     private Dao<Province, Integer> provinceDao;
     private Dao<City, Integer> cityDao;
+    private Dao<Area, Integer> areaDao;
     private Dao<Order, Integer> orderDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMainActivity = ((MainActivity) getActivity());
-        mDatabaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
-        provinceDao = mDatabaseHelper.getProvinceDao();
-        cityDao = mDatabaseHelper.getCityDao();
-        orderDao = mDatabaseHelper.getOrderDao();
+        DatabaseHelper databaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
+        provinceDao = databaseHelper.getProvinceDao();
+        cityDao = databaseHelper.getCityDao();
+        areaDao = databaseHelper.getAreaDao();
+        orderDao = databaseHelper.getOrderDao();
     }
 
     @Override
@@ -71,7 +73,80 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
         mEditProvince = ((AutoCompleteTextView) view.findViewById(R.id.edit_province));
         mEditCity = ((AutoCompleteTextView) view.findViewById(R.id.edit_city));
+        mEditCity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+
+                if (hasFocus) {
+                    String provinceName = mEditProvince.getText().toString().trim();
+
+                    if (StringUtil.isNotEmpty(provinceName)) {
+                        try {
+                            Province province = provinceDao.queryBuilder().where().eq
+                                    ("province_name", provinceName).queryForFirst();
+                            List<City> cities = cityDao.queryBuilder().where().eq("province_id",
+                                    province.getProvinceId()).query();
+
+                            if (cities != null && !cities.isEmpty()) {
+
+                                int size = cities.size();
+                                LogUtil.i("cities size:", String.valueOf(size));
+                                String[] cityArray = new String[size];
+
+                                for (int i = 0; i < size; i++) {
+                                    cityArray[i] = cities.get(i).getCityName();
+                                }
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mMainActivity,
+                                        android.R.layout.simple_list_item_1, cityArray);
+                                mEditCity.setAdapter(arrayAdapter);
+
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
         mEditArea = ((AutoCompleteTextView) view.findViewById(R.id.edit_area));
+        mEditArea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+
+                if (hasFocus) {
+                    String cityName = mEditCity.getText().toString().trim();
+
+                    if (StringUtil.isNotEmpty(cityName)) {
+                        try {
+                            City city = cityDao.queryBuilder().where().eq
+                                    ("city_name", cityName).queryForFirst();
+                            List<Area> cities = areaDao.queryBuilder().where().eq("city_id",
+                                    city.getCityId()).query();
+
+                            if (cities != null && !cities.isEmpty()) {
+
+                                int size = cities.size();
+                                LogUtil.i("cities size:", String.valueOf(size));
+                                String[] areaArray = new String[size];
+
+                                for (int i = 0; i < size; i++) {
+                                    areaArray[i] = cities.get(i).getAreaName();
+                                }
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mMainActivity,
+                                        android.R.layout.simple_list_item_1, areaArray);
+                                mEditArea.setAdapter(arrayAdapter);
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
         mEditAddress = ((EditText) view.findViewById(R.id.edit_address));
         mEditName = ((EditText) view.findViewById(R.id.edit_name));
         mEditPhone = ((EditText) view.findViewById(R.id.edit_phone));
@@ -87,7 +162,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         }
 
         int size = provinces.size();
-        LogUtil.i("province size", String.valueOf(size));
+        LogUtil.i("province size:", String.valueOf(size));
         String[] provincesArray = new String[size];
 
         for (int i = 0; i < size; i++) {

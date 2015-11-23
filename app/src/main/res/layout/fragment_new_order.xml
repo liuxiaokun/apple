@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
     <com.fred.apple.view.HeadView
         android:id="@+id/head_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,16 +29,16 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/province" />
+                    android:text="@string/province"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_province"
                     style="@style/edit_item_style"
-                    android:completionThreshold="1" />
+                    android:completionThreshold="1"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_city"
@@ -48,16 +48,16 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/city" />
+                    android:text="@string/city"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_city"
                     style="@style/edit_item_style"
-                    android:completionThreshold="1" />
+                    android:completionThreshold="1"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_area"
@@ -67,15 +67,16 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/area" />
+                    android:text="@string/area"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/edit_area"
-                    style="@style/edit_item_style" />
+                    style="@style/edit_item_style"
+                    android:completionThreshold="1"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_address"
@@ -85,15 +86,15 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/address" />
+                    android:text="@string/address"/>
 
                 <EditText
                     android:id="@+id/edit_address"
-                    style="@style/edit_item_style" />
+                    style="@style/edit_item_style"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_name"
@@ -103,15 +104,15 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/name" />
+                    android:text="@string/name"/>
 
                 <EditText
                     android:id="@+id/edit_name"
-                    style="@style/edit_item_style" />
+                    style="@style/edit_item_style"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_phone"
@@ -121,16 +122,16 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/phone" />
+                    android:text="@string/phone"/>
 
                 <EditText
                     android:id="@+id/edit_phone"
                     style="@style/edit_item_style"
-                    android:inputType="phone" />
+                    android:inputType="phone"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_specifications"
@@ -140,15 +141,15 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/type" />
+                    android:text="@string/type"/>
 
                 <EditText
                     android:id="@+id/edit_type"
-                    style="@style/edit_item_style" />
+                    style="@style/edit_item_style"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <LinearLayout
                 android:id="@+id/item_quantity"
@@ -158,16 +159,16 @@
 
                 <TextView
                     style="@style/edit_item_title_style"
-                    android:text="@string/quantity" />
+                    android:text="@string/quantity"/>
 
                 <EditText
                     android:id="@+id/edit_qty"
                     style="@style/edit_item_style"
-                    android:inputType="number" />
+                    android:inputType="number"/>
 
             </LinearLayout>
 
-            <include layout="@layout/line" />
+            <include layout="@layout/line"/>
 
             <Button
                 android:id="@+id/new_order"
@@ -180,7 +181,7 @@
                 android:background="@drawable/new_order_button_selector"
                 android:text="@string/place_order"
                 android:textColor="@color/color_white"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
 
         </LinearLayout>
     </ScrollView>

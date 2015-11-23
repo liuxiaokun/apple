@@ -76,6 +76,40 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             db.execSQL("INSERT INTO province (province_id, province_name) VALUES (32, '香港特别行政区');");
             db.execSQL("INSERT INTO province (province_id, province_name) VALUES (33, '澳门特别行政区');");
             db.execSQL("INSERT INTO province (province_id, province_name) VALUES (34, '台湾省');");
+
+            //insert city information.
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (135,'济南市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (136,'青岛市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (137,'淄博市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (138,'枣庄市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (139,'东营市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (140,'烟台市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (141,'潍坊市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (142,'济宁市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (143,'泰安市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (144,'威海市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (145,'日照市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (146,'莱芜市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (147,'临沂市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (148,'德州市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (149,'聊城市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (150,'滨州市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (151,'荷泽市', 15 );");
+
+            //insert city information.
+
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1264, '芝罘区', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1265, '福山区', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1266, '牟平区', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1267, '莱山区', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1268, '长岛县', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1269, '龙口市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1270, '莱阳市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1271, '莱州市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1272, '蓬莱市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1273, '招远市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1274, '栖霞市', 140);");
+            db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1275, '海阳市', 140);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
