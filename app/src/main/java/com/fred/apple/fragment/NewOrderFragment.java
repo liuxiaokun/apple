@@ -14,6 +14,7 @@ import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
 import com.fred.apple.bean.Area;
 import com.fred.apple.bean.City;
+import com.fred.apple.bean.OptionValue;
 import com.fred.apple.bean.Order;
 import com.fred.apple.bean.Province;
 import com.fred.apple.database.DatabaseHelper;
@@ -44,13 +45,14 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
     private EditText mEditAddress;
     private EditText mEditName;
     private EditText mEditPhone;
-    private EditText mEditType;
+    private AutoCompleteTextView mEditType;
     private EditText mEditQty;
 
     private Dao<Province, Integer> provinceDao;
     private Dao<City, Integer> cityDao;
     private Dao<Area, Integer> areaDao;
     private Dao<Order, Integer> orderDao;
+    private Dao<OptionValue, Integer> OptionValueDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         cityDao = databaseHelper.getCityDao();
         areaDao = databaseHelper.getAreaDao();
         orderDao = databaseHelper.getOrderDao();
+        OptionValueDao = databaseHelper.getOptionValueDao();
     }
 
     @Override
@@ -150,13 +153,15 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         mEditAddress = ((EditText) view.findViewById(R.id.edit_address));
         mEditName = ((EditText) view.findViewById(R.id.edit_name));
         mEditPhone = ((EditText) view.findViewById(R.id.edit_phone));
-        mEditType = ((EditText) view.findViewById(R.id.edit_type));
+        mEditType = ((AutoCompleteTextView) view.findViewById(R.id.edit_type));
         mEditQty = ((EditText) view.findViewById(R.id.edit_qty));
 
 
         List<Province> provinces = Lists.newArrayList();
+        List<OptionValue> types = Lists.newArrayList();
         try {
             provinces = provinceDao.queryBuilder().where().eq("enable", true).query();
+            types = OptionValueDao.queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -169,9 +174,22 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
             provincesArray[i] = provinces.get(i).getProvinceName();
         }
 
+        if (types != null && types.size() > 0) {
+            String[] typesArray = new String[types.size()];
+
+            for (int i = 0; i < types.size(); i++) {
+                typesArray[i] = types.get(i).getOptionValue();
+            }
+
+            ArrayAdapter<String> typesAdapter = new ArrayAdapter<>(mMainActivity,
+                    android.R.layout.simple_list_item_1, typesArray);
+            mEditType.setAdapter(typesAdapter);
+        }
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mMainActivity,
                 android.R.layout.simple_list_item_1, provincesArray);
         mEditProvince.setAdapter(arrayAdapter);
+
 
         Button newOrder = (Button) view.findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
@@ -251,24 +269,19 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                 order.setHasPaid(true);
                 order.setHasSent(false);
                 order.setTotal(new BigDecimal(0));
+                order.setCreated(System.currentTimeMillis());
 
                 try {
-                    orderDao.create(order);
+                    int result = orderDao.create(order);
+
+                    if (result == 1) {
+                        ToastUtil.shortShow(mMainActivity, "提交订单成功！");
+                    } else {
+                        ToastUtil.shortShow(mMainActivity, "提交订单失败！");
+                    }
                 } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-
-                List<Order> orders = Lists.newArrayList();
-                try {
-                    orders = orderDao.queryForAll();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                orders.size();
-
-                for (Order tem : orders) {
-                    ToastUtil.shortShow(mMainActivity, tem.isHasSent() + "发货了");
+                    LogUtil.e("NewOrderFragment@onClick", e.getMessage());
+                    ToastUtil.shortShow(mMainActivity, "提交订单失败！");
                 }
                 break;
 

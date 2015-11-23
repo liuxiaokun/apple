@@ -1,5 +1,8 @@
 package com.fred.apple.bean;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
@@ -7,12 +10,17 @@ import java.io.Serializable;
  * @version 1.0.0
  * @since 2015/11/20 17:04
  */
+@DatabaseTable(tableName = "option_value")
 public class OptionValue implements Serializable {
 
+    @DatabaseField(columnName = "option_value_id", generatedId = true)
     private Integer optionValueId;
+
+    @DatabaseField(columnName = "option_id", canBeNull = false)
     private Integer optionId;
+
+    @DatabaseField(columnName = "option_value", canBeNull = false)
     private String optionValue;
-    private String created;
 
     public Integer getOptionValueId() {
         return optionValueId;
@@ -38,11 +46,4 @@ public class OptionValue implements Serializable {
         this.optionValue = optionValue;
     }
 
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
 }

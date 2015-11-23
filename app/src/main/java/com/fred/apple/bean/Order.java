@@ -51,6 +51,9 @@ public class Order implements Serializable {
     @DatabaseField(columnName = "total", canBeNull = false)
     private BigDecimal total;
 
+    @DatabaseField(columnName = "created", canBeNull = false)
+    private Long created;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -145,5 +148,13 @@ public class Order implements Serializable {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public Long getCreated() {
+        return created;
+    }
+
+    public void setCreated(Long created) {
+        this.created = created;
     }
 }

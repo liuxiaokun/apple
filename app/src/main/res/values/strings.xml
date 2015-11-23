@@ -16,4 +16,8 @@
     <string name="type">规格</string>
     <string name="quantity">数量</string>
     <string name="place_order">提交订单</string>
+
+    <!--fragment setting -->
+    <string name="add_type">增加规格</string>
+    <string name="address_manager">地址管理</string>
 </resources>

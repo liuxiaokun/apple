@@ -22,7 +22,6 @@ import com.fred.apple.util.DensityUtil;
 public class MainActivity extends BaseActivity {
 
     private RadioButton mRadioButtonNewOrder;
-    private RadioButton mRadioButtonShowOrders;
     private RadioGroup mRadioGroup;
 
     private NewOrderFragment mNewOrderFragment;
@@ -36,7 +35,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("fred1", DensityUtil.px2dp(this, 1) + "");
+        Log.i("destiny", DensityUtil.px2dp(this, 1) + "");
         initUi();
         initEvent();
         mRadioButtonNewOrder.performClick();
@@ -44,7 +43,6 @@ public class MainActivity extends BaseActivity {
 
     private void initUi() {
         mRadioButtonNewOrder = (RadioButton) this.findViewById(R.id.new_order);
-        mRadioButtonShowOrders = (RadioButton) this.findViewById(R.id.show_orders);
         mRadioGroup = (RadioGroup) this.findViewById(R.id.tab_bottom);
     }
 
@@ -92,12 +90,8 @@ public class MainActivity extends BaseActivity {
 
                     default:
                         break;
-
                 }
             }
         });
-
     }
-
-
 }

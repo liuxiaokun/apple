@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.fred.apple.bean.Area;
 import com.fred.apple.bean.City;
+import com.fred.apple.bean.Option;
+import com.fred.apple.bean.OptionValue;
 import com.fred.apple.bean.Order;
 import com.fred.apple.bean.Province;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -23,10 +25,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "apple.db3";
     private static final int DATABASE_VERSION = 1;
+
     private Dao<Province, Integer> provinceDao;
     private Dao<City, Integer> cityDao;
     private Dao<Area, Integer> areaDao;
     private Dao<Order, Integer> orderDao;
+    private Dao<Option, Integer> optionDao;
+    private Dao<OptionValue, Integer> optionValueDao;
 
 
     public DatabaseHelper(Context context) {
@@ -41,6 +46,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTableIfNotExists(connectionSource, City.class);
             TableUtils.createTableIfNotExists(connectionSource, Area.class);
             TableUtils.createTableIfNotExists(connectionSource, Order.class);
+            TableUtils.createTableIfNotExists(connectionSource, Option.class);
+            TableUtils.createTableIfNotExists(connectionSource, OptionValue.class);
 
             db.execSQL("INSERT INTO province (province_id, province_name) VALUES (1, '北京市');");
             db.execSQL("INSERT INTO province (province_id, province_name) VALUES (2, '天津市');");
@@ -110,6 +117,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1273, '招远市', 140);");
             db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1274, '栖霞市', 140);");
             db.execSQL("INSERT INTO area (area_id, area_name, city_id) VALUES (1275, '海阳市', 140);");
+
+            db.execSQL("INSERT INTO option (option_id, option_name) VALUES(1, '规格')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -169,10 +178,39 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return orderDao;
     }
 
+    public Dao<Option, Integer> getOptionDao() {
+
+        if (optionDao == null) {
+            try {
+                optionDao = getDao(Option.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return optionDao;
+    }
+
+    public Dao<OptionValue, Integer> getOptionValueDao() {
+
+        if (optionValueDao == null) {
+            try {
+                optionValueDao = getDao(OptionValue.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return optionValueDao;
+    }
+
     @Override
     public void close() {
         super.close();
         provinceDao = null;
+        cityDao = null;
+        areaDao = null;
+        orderDao = null;
+        optionDao = null;
+        optionValueDao = null;
     }
 
 }

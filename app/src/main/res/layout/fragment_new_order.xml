@@ -143,9 +143,10 @@
                     style="@style/edit_item_title_style"
                     android:text="@string/type"/>
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/edit_type"
-                    style="@style/edit_item_style"/>
+                    style="@style/edit_item_style"
+                    android:completionThreshold="1"/>
 
             </LinearLayout>
 

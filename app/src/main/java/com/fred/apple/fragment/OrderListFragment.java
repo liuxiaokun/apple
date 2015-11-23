@@ -18,6 +18,8 @@ import com.fred.apple.activity.MainActivity;
 import com.fred.apple.bean.Order;
 import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.util.LogUtil;
+import com.fred.apple.util.StringUtil;
+import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -39,8 +41,6 @@ public class OrderListFragment extends Fragment {
     private Dao<Order, Integer> orderDao;
 
     private OrderAdapter mAdapter;
-
-    private Button mButtonSend;
 
 
     @Override
@@ -87,36 +87,53 @@ public class OrderListFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            ViewHolder viewHolder;
+
             if (convertView == null) {
-                convertView = getActivity().getLayoutInflater().inflate(R.layout.order_item, null);
+                convertView = mMainActivity.getLayoutInflater().inflate(R.layout.order_item, null);
+                viewHolder = new ViewHolder();
+
+                viewHolder.mTextViewName = (TextView) convertView.findViewById(R.id.name);
+                viewHolder.mTextViewPhone = (TextView) convertView.findViewById(R.id.phone);
+                viewHolder.mTextViewType = (TextView) convertView.findViewById(R.id.type);
+                viewHolder.mTextViewAddress = (TextView) convertView.findViewById(R.id.address);
+                viewHolder.buttonSend = (Button) convertView.findViewById(R.id.has_sent);
+
+                convertView.setTag(viewHolder);
+            } else {
+                viewHolder = (ViewHolder) convertView.getTag();
             }
 
             Order order = getItem(position);
+            viewHolder.mTextViewAddress.setText(order.getProvince() + StringUtil.SPACE + order.getCity()
+                    + StringUtil.SPACE + order.getArea()
+                    + StringUtil.SPACE + order.getAddress());
 
-            TextView name = (TextView) convertView.findViewById(R.id.name);
-            TextView phone = (TextView) convertView.findViewById(R.id.phone);
-            TextView type = (TextView) convertView.findViewById(R.id.type);
-            TextView address = (TextView) convertView.findViewById(R.id.address);
-            mButtonSend = (Button) convertView.findViewById(R.id.has_sent);
-
-            address.setText(order.getProvince() + order.getCity() + order.getArea() + order.getAddress());
-
-            name.setText(order.getUserName());
-            phone.setText(order.getTelephone());
-            type.setText(order.getType() + "*" + order.getQuantity());
+            viewHolder.mTextViewName.setText(order.getUserName());
+            viewHolder.mTextViewPhone.setText(order.getTelephone());
+            viewHolder.mTextViewType.setText(order.getType() + " * " + order.getQuantity());
 
             if (order.isHasSent()) {
-                mButtonSend.setText("已发货");
-                mButtonSend.setBackgroundColor(Color.parseColor("#999999"));
-                mButtonSend.setClickable(false);
+                viewHolder.buttonSend.setText("已发货");
+                viewHolder.buttonSend.setBackgroundColor(Color.parseColor("#999999"));
+                viewHolder.buttonSend.setClickable(false);
             } else {
-                mButtonSend.setText("发货");
-                mButtonSend.setTag(order);
-                mButtonSend.setOnClickListener(new SendListener());
+                viewHolder.buttonSend.setText("发货");
+                viewHolder.buttonSend.setBackgroundColor(Color.parseColor("#009966"));
+                viewHolder.buttonSend.setTag(order);
+                viewHolder.buttonSend.setOnClickListener(new SendListener());
             }
 
             return convertView;
         }
+    }
+
+    static class ViewHolder {
+        private TextView mTextViewName;
+        private TextView mTextViewType;
+        private TextView mTextViewPhone;
+        private TextView mTextViewAddress;
+        private Button buttonSend;
     }
 
     private class SendListener implements View.OnClickListener {
@@ -124,17 +141,23 @@ public class OrderListFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
+            Button button = ((Button) view);
             Order updateOrder = (Order) view.getTag();
             updateOrder.setHasSent(true);
             LogUtil.i("SendListener", updateOrder.getOrderId() + "");
             try {
                 int update = orderDao.update(updateOrder);
+
                 if (update == 1) {
-                    mButtonSend.setBackgroundColor(Color.parseColor("#999999"));
-                    mButtonSend.setClickable(false);
+                    button.setBackgroundColor(Color.parseColor("#999999"));
+                    button.setClickable(false);
+                    ToastUtil.shortShow(mMainActivity, "发货成功！");
+                } else {
+                    ToastUtil.shortShow(mMainActivity, "发货失败！");
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LogUtil.e("SendListener@onClick", e.getMessage());
+                ToastUtil.shortShow(mMainActivity, "发货失败！");
             }
         }
     }

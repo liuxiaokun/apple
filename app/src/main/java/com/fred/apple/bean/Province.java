@@ -13,7 +13,7 @@ import java.io.Serializable;
 @DatabaseTable(tableName = "province")
 public class Province implements Serializable {
 
-    @DatabaseField(id = true, canBeNull = false, columnName = "province_id")
+    @DatabaseField(id = true, canBeNull = false, columnName = "province_id", index = true)
     private Integer provinceId;
 
     @DatabaseField(columnName = "province_name", canBeNull = false)
