@@ -1,21 +1,17 @@
 package com.fred.apple.activity;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.fred.apple.R;
-import com.fred.apple.bean.Province;
-import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.fragment.NewOrderFragment;
 import com.fred.apple.fragment.OrderListFragment;
 import com.fred.apple.fragment.OtherFragment;
+import com.fred.apple.fragment.SettingFragment;
 import com.fred.apple.util.DensityUtil;
-import com.fred.apple.util.ScreenUtil;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
-
-import java.sql.SQLException;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -31,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     private NewOrderFragment mNewOrderFragment;
     private OrderListFragment mOrderListFragment;
+    private SettingFragment mSettingFragment;
     private OtherFragment mOtherFragment;
 
 
@@ -39,16 +36,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("fred1", DensityUtil.px2dp(this, 1)+"");
-//        Province province = new Province();
-//        province.setProvinceId(1);
-//        province.setEnable(1);
-//        province.setProvinceName("山东");
-//        try {
-//            OpenHelperManager.getHelper(this, DatabaseHelper.class).getProvinceDao().create(province);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        Log.i("fred1", DensityUtil.px2dp(this, 1) + "");
         initUi();
         initEvent();
         mRadioButtonNewOrder.performClick();
@@ -67,6 +55,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
                 switch (checkedId) {
 
                     case R.id.new_order:
@@ -74,8 +63,7 @@ public class MainActivity extends BaseActivity {
                         if (null == mNewOrderFragment) {
                             mNewOrderFragment = new NewOrderFragment();
                         }
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.main_content, mNewOrderFragment).commit();
+                        ft.replace(R.id.main_content, mNewOrderFragment).commit();
                         break;
 
                     case R.id.show_orders:
@@ -83,8 +71,15 @@ public class MainActivity extends BaseActivity {
                         if (null == mOrderListFragment) {
                             mOrderListFragment = new OrderListFragment();
                         }
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.main_content, mOrderListFragment).commit();
+                        ft.replace(R.id.main_content, mOrderListFragment).commit();
+                        break;
+
+                    case R.id.setting:
+
+                        if (null == mSettingFragment) {
+                            mSettingFragment = new SettingFragment();
+                        }
+                        ft.replace(R.id.main_content, mSettingFragment).commit();
                         break;
 
                     case R.id.others:
@@ -92,8 +87,7 @@ public class MainActivity extends BaseActivity {
                         if (null == mOtherFragment) {
                             mOtherFragment = new OtherFragment();
                         }
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.main_content, mOtherFragment).commit();
+                        ft.replace(R.id.main_content, mOtherFragment).commit();
                         break;
 
                     default:

@@ -2,8 +2,6 @@ package com.fred.apple.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +16,16 @@ import com.fred.apple.bean.City;
 import com.fred.apple.bean.Order;
 import com.fred.apple.bean.Province;
 import com.fred.apple.database.DatabaseHelper;
+import com.fred.apple.util.LogUtil;
 import com.fred.apple.util.StringUtil;
 import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 import com.google.common.collect.Lists;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -90,7 +87,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         }
 
         int size = provinces.size();
-        Log.i("fredsize", size + "");
+        LogUtil.i("province size", String.valueOf(size));
         String[] provincesArray = new String[size];
 
         for (int i = 0; i < size; i++) {
