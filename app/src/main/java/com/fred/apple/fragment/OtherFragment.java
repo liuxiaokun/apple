@@ -11,12 +11,15 @@ import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
 import com.fred.apple.bean.Order;
 import com.fred.apple.database.DatabaseHelper;
-import com.fred.apple.util.LogUtil;
 import com.fred.apple.view.HeadView;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+
+import static com.fred.apple.util.Constant.BOX;
+import static com.fred.apple.util.Constant.ORDER_UNIT;
+import static com.fred.apple.util.Constant.YUAN;
 
 /**
  * @author Fred Liu(liuxiaokun0410@gmail.com)
@@ -45,19 +48,25 @@ public class OtherFragment extends Fragment {
         HeadView headView = (HeadView) view.findViewById(R.id.head_view);
         headView.setTitleText("其他选项");
 
-        TextView peddingCount = (TextView) view.findViewById(R.id.pending_count);
+        TextView pendingCount = (TextView) view.findViewById(R.id.pending_count);
         TextView sentCount = (TextView) view.findViewById(R.id.sent_count);
+        TextView totalPriceCount = (TextView) view.findViewById(R.id.total_price);
 
         try {
-            long hasSentLong = orderDao.queryBuilder().where().eq("has_sent", true).countOf();
-            LogUtil.d("OtherFragment@onCreateView", "hasSentLong" + hasSentLong);
+            long hasSentLong = orderDao.queryBuilder().where().eq("has_sent", true)
+                    .and().eq("is_deleted", false).countOf();
+            Long sentBoxCount = orderDao.queryRawValue("SELECT SUM(quantity) FROM `ORDER` WHERE " +
+                    "has_sent = 1 AND is_deleted = 0");
+            sentCount.setText(hasSentLong + ORDER_UNIT + "(" + sentBoxCount + BOX + ")");
 
-            sentCount.setText(String.valueOf(hasSentLong));
+            long pendingLong = orderDao.queryBuilder().where().eq("has_sent", false)
+                    .and().eq("is_deleted", false).countOf();
+            Long pendingBoxCount = orderDao.queryRawValue("SELECT SUM(quantity) FROM `ORDER` " +
+                    "WHERE has_sent = 0 AND is_deleted = 0");
+            pendingCount.setText(pendingLong + ORDER_UNIT + "(" + pendingBoxCount + BOX + ")");
 
-            long penddingLong = orderDao.queryBuilder().where().eq("has_sent", false).countOf();
-            LogUtil.d("OtherFragment@onCreateView", "penddingLong" + penddingLong);
-
-            peddingCount.setText(String.valueOf(penddingLong));
+            Long totalPrice = orderDao.queryRawValue("SELECT SUM(total) FROM `ORDER` WHERE is_deleted = 0");
+            totalPriceCount.setText(totalPrice + YUAN);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -114,7 +114,7 @@ public class OrderListFragment extends Fragment {
             viewHolder.mTextViewPhone.setText(order.getTelephone());
             viewHolder.mTextViewType.setText(order.getType() + " * " + order.getQuantity());
 
-            if (order.isHasSent()) {
+            if (order.getHasSent()) {
                 viewHolder.buttonSend.setText("已发货");
                 viewHolder.buttonSend.setBackgroundColor(Color.parseColor("#999999"));
                 viewHolder.buttonSend.setClickable(false);

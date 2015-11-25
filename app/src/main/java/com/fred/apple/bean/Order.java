@@ -40,10 +40,10 @@ public class Order implements Serializable {
     private String telephone;
 
     @DatabaseField(columnName = "has_sent", canBeNull = false, defaultValue = "false")
-    private boolean hasSent;
+    private Boolean hasSent;
 
     @DatabaseField(columnName = "has_paid", canBeNull = false, defaultValue = "true")
-    private boolean hasPaid;
+    private Boolean hasPaid;
 
     @DatabaseField(columnName = "quantity", canBeNull = false)
     private Integer quantity;
@@ -56,6 +56,9 @@ public class Order implements Serializable {
 
     @DatabaseField(columnName = "sent_time", canBeNull = true)
     private Long sentTime;
+
+    @DatabaseField(columnName = "is_deleted", canBeNull = false, defaultValue = "false")
+    private Boolean isDeleted;
 
     public Long getOrderId() {
         return orderId;
@@ -121,19 +124,19 @@ public class Order implements Serializable {
         this.telephone = telephone;
     }
 
-    public boolean isHasPaid() {
-        return hasPaid;
-    }
-
-    public boolean isHasSent() {
+    public Boolean getHasSent() {
         return hasSent;
     }
 
-    public void setHasSent(boolean hasSent) {
+    public void setHasSent(Boolean hasSent) {
         this.hasSent = hasSent;
     }
 
-    public void setHasPaid(boolean hasPaid) {
+    public Boolean getHasPaid() {
+        return hasPaid;
+    }
+
+    public void setHasPaid(Boolean hasPaid) {
         this.hasPaid = hasPaid;
     }
 
@@ -167,5 +170,13 @@ public class Order implements Serializable {
 
     public void setSentTime(Long sentTime) {
         this.sentTime = sentTime;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }
