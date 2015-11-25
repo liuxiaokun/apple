@@ -101,7 +101,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (148,'德州市', 15 );");
             db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (149,'聊城市', 15 );");
             db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (150,'滨州市', 15 );");
-            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (151,'荷泽市', 15 );");
+            db.execSQL("INSERT INTO city (city_id, city_name, province_id) VALUES (151,'菏泽市', 15 );");
 
             //insert 北京 cities.
             db.execSQL("INSERT INTO city(city_id, city_name, province_id) VALUES(1, '北京市', 1);");
