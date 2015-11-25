@@ -24,4 +24,6 @@
     <!--fragment other-->
     <string name="pending_send">未发货</string>
     <string name="has_sent">已发货</string>
+    <string name="author">作者：Fred Liu, 时间：2015-11-25, 版本：1.0.0</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.fred.apple.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.fred.apple.util.LogUtil;
 import com.fred.apple.util.StringUtil;
 import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
+import com.fred.apple.view.MyEditText;
 import com.google.common.collect.Lists;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -47,6 +49,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
     private EditText mEditPhone;
     private AutoCompleteTextView mEditType;
     private EditText mEditQty;
+    private MyEditText mEditPrice;
 
     private Dao<Province, Integer> provinceDao;
     private Dao<City, Integer> cityDao;
@@ -155,7 +158,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         mEditPhone = ((EditText) view.findViewById(R.id.edit_phone));
         mEditType = ((AutoCompleteTextView) view.findViewById(R.id.edit_type));
         mEditQty = ((EditText) view.findViewById(R.id.edit_qty));
-
+        mEditPrice = ((MyEditText) view.findViewById(R.id.edit_price));
 
         List<Province> provinces = Lists.newArrayList();
         List<OptionValue> types = Lists.newArrayList();
@@ -190,7 +193,8 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                 android.R.layout.simple_list_item_1, provincesArray);
         mEditProvince.setAdapter(arrayAdapter);
 
-
+        mEditPrice.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mEditPrice.setTitle("总价");
         Button newOrder = (Button) view.findViewById(R.id.new_order);
         newOrder.setOnClickListener(this);
         return view;
@@ -257,6 +261,13 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
 
+                String price = mEditPrice.getText();
+
+                if (StringUtil.isEmpty(price)) {
+                    ToastUtil.shortShow(mMainActivity, "价格不能为空!");
+                    return;
+                }
+
                 Order order = new Order();
                 order.setProvince(provinceName);
                 order.setCity(cityName);
@@ -268,7 +279,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                 order.setQuantity(Integer.valueOf(qty));
                 order.setHasPaid(true);
                 order.setHasSent(false);
-                order.setTotal(new BigDecimal(0));
+                order.setTotal(new BigDecimal(price));
                 order.setCreated(System.currentTimeMillis());
 
                 try {

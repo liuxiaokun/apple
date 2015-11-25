@@ -171,6 +171,11 @@
 
             <include layout="@layout/line"/>
 
+            <com.fred.apple.view.MyEditText
+                android:id="@+id/edit_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/new_order"
                 android:layout_width="match_parent"
