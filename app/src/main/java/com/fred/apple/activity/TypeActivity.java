@@ -1,7 +1,6 @@
 package com.fred.apple.activity;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,7 +24,6 @@ import java.sql.SQLException;
 public class TypeActivity extends BaseActivity {
 
     private MyEditText mMyEditTextName;
-    private MyEditText mMyEditTextPrice;
     private Button mButtonAddType;
 
     private Dao<OptionValue, Integer> optionValueDao;
@@ -43,12 +41,9 @@ public class TypeActivity extends BaseActivity {
         headView.setTitleText("增加规格");
 
         mMyEditTextName = (MyEditText) findViewById(R.id.type_name);
-        mMyEditTextPrice = (MyEditText) findViewById(R.id.type_price);
         mButtonAddType = (Button) findViewById(R.id.add_type);
 
         mMyEditTextName.setTitle("规格");
-        mMyEditTextPrice.setTitle("价格");
-        mMyEditTextPrice.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         mButtonAddType.setOnClickListener(new View.OnClickListener() {
 
@@ -59,13 +54,6 @@ public class TypeActivity extends BaseActivity {
 
                 if (StringUtil.isEmpty(typeName)) {
                     ToastUtil.shortShow(TypeActivity.this, "规格名字不能为空!");
-                    return;
-                }
-
-                String typePrice = mMyEditTextPrice.getText();
-
-                if (StringUtil.isEmpty(typePrice)) {
-                    ToastUtil.shortShow(TypeActivity.this, "规格价格不能为空!");
                     return;
                 }
 

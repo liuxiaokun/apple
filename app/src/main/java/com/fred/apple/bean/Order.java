@@ -54,6 +54,9 @@ public class Order implements Serializable {
     @DatabaseField(columnName = "created", canBeNull = false)
     private Long created;
 
+    @DatabaseField(columnName = "sent_time", canBeNull = true)
+    private Long sentTime;
+
     public Long getOrderId() {
         return orderId;
     }
@@ -156,5 +159,13 @@ public class Order implements Serializable {
 
     public void setCreated(Long created) {
         this.created = created;
+    }
+
+    public Long getSentTime() {
+        return sentTime;
+    }
+
+    public void setSentTime(Long sentTime) {
+        this.sentTime = sentTime;
     }
 }

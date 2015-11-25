@@ -25,6 +25,7 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -144,7 +145,8 @@ public class OrderListFragment extends Fragment {
             Button button = ((Button) view);
             Order updateOrder = (Order) view.getTag();
             updateOrder.setHasSent(true);
-            LogUtil.i("SendListener", updateOrder.getOrderId() + "");
+            updateOrder.setSentTime(new Date().getTime());
+
             try {
                 int update = orderDao.update(updateOrder);
 
