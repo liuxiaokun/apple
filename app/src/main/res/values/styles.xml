@@ -63,4 +63,9 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="order_detail_item">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/order_item_text_size</item>
+    </style>
+
 </resources>

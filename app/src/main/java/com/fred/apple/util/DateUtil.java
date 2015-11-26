@@ -21,4 +21,12 @@ public class DateUtil {
 
     }
 
+    public static String getDateTime(Long million) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.CHINA);
+
+        return simpleDateFormat.format(new Date(million));
+
+    }
+
 }

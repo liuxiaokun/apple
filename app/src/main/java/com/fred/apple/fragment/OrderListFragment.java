@@ -1,7 +1,7 @@
 package com.fred.apple.fragment;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
+import com.fred.apple.activity.OrderDetailActivity;
 import com.fred.apple.bean.Order;
 import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.util.LogUtil;
@@ -44,6 +45,8 @@ public class OrderListFragment extends Fragment {
 
     private OrderAdapter mAdapter;
 
+    private ListView mOrderList;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,18 +64,21 @@ public class OrderListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
         HeadView headView = (HeadView) view.findViewById(R.id.head_view);
-        ListView orderList = (ListView) view.findViewById(R.id.order_list);
         headView.setTitleText(getResources().getString(R.string.show_orders));
+        mOrderList = (ListView) view.findViewById(R.id.order_list);
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
         try {
-            mAdapter = new OrderAdapter(orderDao.queryForAll());
+            mAdapter = new OrderAdapter(orderDao.queryForEq("is_deleted", false));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        orderList.setAdapter(mAdapter);
-
-        orderList.setOnItemClickListener(new MyOnItemClickListener());
-        return view;
+        mOrderList.setAdapter(mAdapter);
+        mOrderList.setOnItemClickListener(new MyOnItemClickListener());
     }
 
     @Override
@@ -191,15 +197,12 @@ public class OrderListFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             Order order = mAdapter.getItem(position);
-            OrderDetailFragment orderDetailFragment = new OrderDetailFragment();
+            Intent intent = new Intent(mMainActivity, OrderDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("order", order);
-            orderDetailFragment.setArguments(bundle);
-            FragmentTransaction fragmentTransaction = getFragmentManager()
-                    .beginTransaction();
-            fragmentTransaction.replace(R.id.main_content, orderDetailFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            intent.putExtras(bundle);
+
+            mMainActivity.startActivity(intent);
         }
     }
 }

@@ -27,4 +27,13 @@
     <string name="total_price">总货款</string>
     <string name="author">作者：Fred Liu, 时间：2015-11-25, 版本：1.0.0</string>
 
+    <!-- order detail activity-->
+    <string name="order_id">订单号</string>
+    <string name="user_name">姓名</string>
+    <string name="is_sent">是否发货</string>
+    <string name="is_paid">是否支付</string>
+    <string name="created">下单时间</string>
+    <string name="sent_time">发货时间</string>
+    <string name="delete_order">删除订单</string>
+
 </resources>
