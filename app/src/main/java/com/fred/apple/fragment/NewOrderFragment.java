@@ -24,6 +24,7 @@ import com.fred.apple.util.StringUtil;
 import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 import com.fred.apple.view.MyEditText;
+import com.fred.apple.view.WarningDialog;
 import com.google.common.collect.Lists;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -31,6 +32,8 @@ import com.j256.ormlite.dao.Dao;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -91,6 +94,10 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                         try {
                             Province province = provinceDao.queryBuilder().where().eq
                                     ("province_name", provinceName).queryForFirst();
+
+                            if (null == province) {
+                                return;
+                            }
                             List<City> cities = cityDao.queryBuilder().where().eq("province_id",
                                     province.getProvinceId()).query();
 
@@ -129,6 +136,10 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                         try {
                             City city = cityDao.queryBuilder().where().eq
                                     ("city_name", cityName).queryForFirst();
+
+                            if (null == city) {
+                                return;
+                            }
                             List<Area> cities = areaDao.queryBuilder().where().eq("city_id",
                                     city.getCityId()).query();
 
@@ -243,8 +254,15 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                 String phone = mEditPhone.getText().toString();
 
                 if (StringUtil.isEmpty(phone)) {
-                    ToastUtil.shortShow(mMainActivity, "手机不能为空!");
+                    ToastUtil.shortShow(mMainActivity, "手机号不能为空!");
                     return;
+                }
+
+                Pattern pattern = Pattern.compile("^1\\d{10}$");
+                Matcher matcher = pattern.matcher(phone);
+
+                if (!matcher.matches()) {
+                    ToastUtil.shortShow(mMainActivity, "手机格式不正确!");
                 }
 
                 String type = mEditType.getText().toString();
@@ -286,7 +304,17 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                     int result = orderDao.create(order);
 
                     if (result == 1) {
-                        ToastUtil.shortShow(mMainActivity, "提交订单成功！");
+
+                        final WarningDialog warningDialog = new WarningDialog(mMainActivity);
+                        warningDialog.setContent("提交订单成功！");
+                        warningDialog.setRightButtonListener("确定", new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                warningDialog.dismiss();
+                            }
+                        });
+                        warningDialog.show();
                     } else {
                         ToastUtil.shortShow(mMainActivity, "提交订单失败！");
                     }

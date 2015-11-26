@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="320dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/warning_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@null"
+        android:src="@drawable/dialog_warning"/>
+
+    <TextView
+        android:id="@+id/warning_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/warning_icon"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding"
+        android:textColor="#666666"
+        android:textSize="26sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+
+        android:paddingRight="10dp">
+
+        <Button
+            android:id="@+id/warning_left"
+            style="@style/warning_dialog_button"
+            android:background="@color/color_dcd3d3"
+            android:paddingLeft="10dp"
+            android:textColor="#666666"/>
+
+        <Button
+            android:id="@+id/warning_right"
+            style="@style/warning_dialog_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/new_order_button_selector"
+            android:textColor="@color/color_white"/>
+    </LinearLayout>
+
+</RelativeLayout>

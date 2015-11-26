@@ -46,4 +46,21 @@
         <item name="android:layout_marginTop">5dp</item>
     </style>
 
+    <style name="warning_dialog_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="no_title" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/color_white</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
