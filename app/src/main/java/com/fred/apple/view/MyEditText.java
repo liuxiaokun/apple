@@ -70,4 +70,8 @@ public class MyEditText extends LinearLayout {
     public String getText() {
         return mEditTextContent.getText().toString().trim();
     }
+
+    public void setText(CharSequence charSequence) {
+        mEditTextContent.setText(charSequence);
+    }
 }

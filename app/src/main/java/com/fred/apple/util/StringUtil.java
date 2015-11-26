@@ -8,6 +8,7 @@ package com.fred.apple.util;
 public class StringUtil {
 
     public static final String SPACE = " ";
+    public static final String EMPTY = "";
 
     public static boolean isEmpty(CharSequence charSequence) {
 

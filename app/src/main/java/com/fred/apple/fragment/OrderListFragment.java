@@ -21,6 +21,7 @@ import com.fred.apple.util.LogUtil;
 import com.fred.apple.util.StringUtil;
 import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
+import com.fred.apple.view.WarningDialog;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
@@ -142,25 +143,45 @@ public class OrderListFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            Button button = ((Button) view);
-            Order updateOrder = (Order) view.getTag();
-            updateOrder.setHasSent(true);
-            updateOrder.setSentTime(new Date().getTime());
+            final Button button = ((Button) view);
+            final Order updateOrder = (Order) view.getTag();
 
-            try {
-                int update = orderDao.update(updateOrder);
+            final WarningDialog warningDialog = new WarningDialog(mMainActivity);
+            warningDialog.setContent("订单(" + updateOrder.getOrderId() + ")发货？");
+            warningDialog.setRightButtonListener("确定", new View.OnClickListener() {
 
-                if (update == 1) {
-                    button.setBackgroundColor(Color.parseColor("#999999"));
-                    button.setClickable(false);
-                    ToastUtil.shortShow(mMainActivity, "发货成功！");
-                } else {
-                    ToastUtil.shortShow(mMainActivity, "发货失败！");
+                @Override
+                public void onClick(View v) {
+                    warningDialog.dismiss();
+                    updateOrder.setHasSent(true);
+                    updateOrder.setSentTime(new Date().getTime());
+
+                    try {
+                        int update = orderDao.update(updateOrder);
+
+                        if (update == 1) {
+                            button.setBackgroundColor(Color.parseColor("#999999"));
+                            button.setClickable(false);
+                            ToastUtil.shortShow(mMainActivity, "发货成功！");
+                        } else {
+                            ToastUtil.shortShow(mMainActivity, "发货失败！");
+                        }
+                    } catch (SQLException e) {
+                        LogUtil.e("SendListener@onClick", e.getMessage());
+                        ToastUtil.shortShow(mMainActivity, "发货失败！");
+                    }
                 }
-            } catch (SQLException e) {
-                LogUtil.e("SendListener@onClick", e.getMessage());
-                ToastUtil.shortShow(mMainActivity, "发货失败！");
-            }
+            });
+
+            warningDialog.setLeftButtonListener("取消", new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    warningDialog.dismiss();
+                    ToastUtil.shortShow(mMainActivity, "发货已取消！");
+                }
+            });
+            warningDialog.show();
         }
     }
 

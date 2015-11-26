@@ -312,6 +312,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
                             @Override
                             public void onClick(View v) {
                                 warningDialog.dismiss();
+                                clearData();
                             }
                         });
                         warningDialog.show();
@@ -327,5 +328,18 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void clearData() {
+
+        mEditProvince.setText(StringUtil.EMPTY);
+        mEditCity.setText(StringUtil.EMPTY);
+        mEditArea.setText(StringUtil.EMPTY);
+        mEditAddress.setText(StringUtil.EMPTY);
+        mEditName.setText(StringUtil.EMPTY);
+        mEditPhone.setText(StringUtil.EMPTY);
+        mEditType.setText(StringUtil.EMPTY);
+        mEditQty.setText(StringUtil.EMPTY);
+        mEditPrice.setText(StringUtil.EMPTY);
     }
 }
