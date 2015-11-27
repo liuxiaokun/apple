@@ -9,6 +9,7 @@ public class StringUtil {
 
     public static final String SPACE = " ";
     public static final String EMPTY = "";
+    public static final String COMMA = ",";
 
     public static boolean isEmpty(CharSequence charSequence) {
 

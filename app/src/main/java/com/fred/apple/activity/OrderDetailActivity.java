@@ -1,5 +1,8 @@
 package com.fred.apple.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +26,7 @@ import static com.fred.apple.util.Constant.HAS_SENT;
 import static com.fred.apple.util.Constant.PENDING_PAID;
 import static com.fred.apple.util.Constant.PENDING_SEND;
 import static com.fred.apple.util.Constant.YUAN;
+import static com.fred.apple.util.StringUtil.COMMA;
 import static com.fred.apple.util.StringUtil.SPACE;
 
 /**
@@ -35,6 +39,8 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
     private Order mOrder;
 
     private Dao<Order, Integer> orderDao;
+
+    private String mAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
         ((HeadView) findViewById(R.id.head_view)).setTitleText("订单详情");
         Button deleteOrder = ((Button) findViewById(R.id.delete_order));
         deleteOrder.setOnClickListener(this);
+        Button sendMessage = ((Button) findViewById(R.id.send_message));
+        sendMessage.setOnClickListener(this);
 
         TextView orderId = (TextView) findViewById(R.id.order_id);
         orderId.setText(String.valueOf(mOrder.getOrderId()));
@@ -58,8 +66,9 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
         userName.setText(mOrder.getUserName());
 
         TextView address = (TextView) findViewById(R.id.address);
-        address.setText(mOrder.getProvince() + SPACE + mOrder.getCity() + SPACE + mOrder.getArea() + SPACE
-                + mOrder.getAddress());
+        mAddress = mOrder.getProvince() + SPACE + mOrder.getCity() + SPACE + mOrder.getArea() + SPACE
+                + mOrder.getAddress();
+        address.setText(mAddress);
 
         TextView type = (TextView) findViewById(R.id.type);
         type.setText(mOrder.getType());
@@ -68,7 +77,14 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
         telephone.setText(mOrder.getTelephone());
 
         TextView hasSent = (TextView) findViewById(R.id.has_sent);
-        hasSent.setText(mOrder.getHasSent() ? HAS_SENT : PENDING_SEND);
+
+        if (mOrder.getHasSent()) {
+            deleteOrder.setClickable(false);
+            hasSent.setText(HAS_SENT);
+            deleteOrder.setBackgroundColor(Color.parseColor("#999999"));
+        } else {
+            hasSent.setText(PENDING_SEND);
+        }
 
         TextView hasPaid = (TextView) findViewById(R.id.has_paid);
         hasPaid.setText(mOrder.getHasPaid() ? HAS_PAID : PENDING_PAID);
@@ -98,46 +114,48 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
 
                 final WarningDialog dialog = new WarningDialog(OrderDetailActivity.this);
 
-                if (mOrder.getHasSent()) {
-                    dialog.setContent("已发货的订单不能删除！");
-                    dialog.setRightButtonListener("确定", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                } else {
-                    dialog.setContent("确定删除？");
-                    dialog.setLeftButtonListener("取消", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                    dialog.setRightButtonListener("删除", new View.OnClickListener() {
 
-                        @Override
-                        public void onClick(View v) {
-                            mOrder.setIsDeleted(true);
-                            dialog.dismiss();
-                            try {
-                                int update = orderDao.update(mOrder);
+                dialog.setContent("确定删除？");
+                dialog.setLeftButtonListener("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.setRightButtonListener("删除", new View.OnClickListener() {
 
-                                if (update == 1) {
-                                    SimpleToast.shortShow(OrderDetailActivity.this, "删除成功");
-                                    OrderDetailActivity.this.finish();
-                                } else {
-                                    SimpleToast.shortShow(OrderDetailActivity.this, "删除失败");
-                                }
-                            } catch (SQLException e) {
+                    @Override
+                    public void onClick(View v) {
+                        mOrder.setIsDeleted(true);
+                        dialog.dismiss();
+                        try {
+                            int update = orderDao.update(mOrder);
+
+                            if (update == 1) {
+                                SimpleToast.shortShow(OrderDetailActivity.this, "删除成功");
+                                OrderDetailActivity.this.finish();
+                            } else {
                                 SimpleToast.shortShow(OrderDetailActivity.this, "删除失败");
                             }
+                        } catch (SQLException e) {
+                            SimpleToast.shortShow(OrderDetailActivity.this, "删除失败");
                         }
-                    });
-                }
+                    }
+                });
                 dialog.show();
                 break;
 
+            case R.id.send_message:
+
+                String messageBody = mAddress + COMMA + mOrder.getTelephone() + COMMA
+                        + mOrder.getUserName() + COMMA + mOrder.getType() + COMMA
+                        + mOrder.getQuantity() + BOX;
+                Uri smsToUri = Uri.parse("smsto:");
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO, smsToUri);
+                intent.putExtra("sms_body", messageBody);
+                startActivity(intent);
+                break;
             default:
                 break;
         }

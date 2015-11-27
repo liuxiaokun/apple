@@ -1,267 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <com.fred.apple.view.HeadView
         android:id="@+id/head_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head_view">
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/order_id"/>
-
-        <TextView
-            android:id="@+id/order_id"
-            style="@style/order_detail_item"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/order_id"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/user_name"/>
+                <TextView
+                    android:id="@+id/order_id"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/user_name"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/user_name"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/address"/>
+                <TextView
+                    android:id="@+id/user_name"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/address"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/address"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/type"/>
+                <TextView
+                    android:id="@+id/address"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/type"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/type"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/phone"/>
+                <TextView
+                    android:id="@+id/type"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/telephone"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/phone"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/is_sent"/>
+                <TextView
+                    android:id="@+id/telephone"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/has_sent"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/is_sent"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/is_paid"/>
+                <TextView
+                    android:id="@+id/has_sent"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/has_paid"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/is_paid"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/quantity"/>
+                <TextView
+                    android:id="@+id/has_paid"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/quantity"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/quantity"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/total_price"/>
+                <TextView
+                    android:id="@+id/quantity"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/total_price"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/total_price"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/created"/>
+                <TextView
+                    android:id="@+id/total_price"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/created"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_height"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/created"/>
 
-        <TextView
-            style="@style/order_detail_item"
-            android:layout_width="70dp"
-            android:gravity="center_vertical|left"
-            android:text="@string/sent_time"/>
+                <TextView
+                    android:id="@+id/created"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/sent_time"
-            style="@style/order_detail_item"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical|right"/>
-    </LinearLayout>
+            <include layout="@layout/line"/>
 
-    <include layout="@layout/line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_height"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingRight="@dimen/common_padding">
 
-    <Button
-        android:id="@+id/delete_order"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/new_order_button_selector"
-        android:text="@string/delete_order"
-        android:textColor="@color/color_white"
-        android:textSize="18sp"/>
+                <TextView
+                    style="@style/order_detail_item"
+                    android:layout_width="70dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/sent_time"/>
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/sent_time"
+                    style="@style/order_detail_item"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical|right"/>
+            </LinearLayout>
+
+            <include layout="@layout/line"/>
+
+            <Button
+                android:id="@+id/delete_order"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="26dp"
+                android:background="@drawable/new_order_button_selector"
+                android:text="@string/delete_order"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/send_message"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/new_order_button_selector"
+                android:text="@string/send_message"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

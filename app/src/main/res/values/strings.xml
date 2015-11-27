@@ -35,5 +35,6 @@
     <string name="created">下单时间</string>
     <string name="sent_time">发货时间</string>
     <string name="delete_order">删除订单</string>
+    <string name="send_message">发送短信</string>
 
 </resources>
