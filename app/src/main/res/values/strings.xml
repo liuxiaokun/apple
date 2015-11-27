@@ -19,7 +19,7 @@
 
     <!--fragment setting -->
     <string name="add_type">增加规格</string>
-    <string name="address_manager">地址管理</string>
+    <string name="type_list">规格列表</string>
 
     <!--fragment other-->
     <string name="pending_send">未发货</string>

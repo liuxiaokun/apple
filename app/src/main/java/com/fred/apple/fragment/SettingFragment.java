@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
 import com.fred.apple.activity.TypeActivity;
+import com.fred.apple.activity.TypeListActivity;
 import com.fred.apple.view.HeadView;
 
 /**
@@ -36,10 +37,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         headView.setTitleText("个性设置");
 
         Button addType = (Button) view.findViewById(R.id.add_type);
-        Button addressManager = (Button) view.findViewById(R.id.address_manager);
+        Button typeList = (Button) view.findViewById(R.id.type_list);
 
         addType.setOnClickListener(this);
-        addressManager.setOnClickListener(this);
+        typeList.setOnClickListener(this);
 
 
         return view;
@@ -54,7 +55,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
                 mMainActivity.launch(TypeActivity.class);
                 break;
-            case R.id.address_manager:
+            case R.id.type_list:
+                mMainActivity.launch(TypeListActivity.class);
                 break;
             default:
                 break;

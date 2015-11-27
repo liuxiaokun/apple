@@ -22,6 +22,9 @@ public class OptionValue implements Serializable {
     @DatabaseField(columnName = "option_value", canBeNull = false)
     private String optionValue;
 
+    @DatabaseField(columnName = "is_deleted", canBeNull = false, defaultValue = "false")
+    private Boolean isDeleted;
+
     public Integer getOptionValueId() {
         return optionValueId;
     }
@@ -46,4 +49,11 @@ public class OptionValue implements Serializable {
         this.optionValue = optionValue;
     }
 
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }

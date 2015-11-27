@@ -39,8 +39,6 @@ public class OrderListFragment extends Fragment {
 
     private MainActivity mMainActivity;
 
-    private DatabaseHelper mDatabaseHelper;
-
     private Dao<Order, Integer> orderDao;
 
     private OrderAdapter mAdapter;
@@ -53,10 +51,8 @@ public class OrderListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mMainActivity = ((MainActivity) getActivity());
 
-        mDatabaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
-
-        orderDao = mDatabaseHelper.getOrderDao();
-
+        DatabaseHelper helper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
+        orderDao = helper.getOrderDao();
     }
 
     @Override

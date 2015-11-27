@@ -23,14 +23,14 @@
         android:textSize="18sp"/>
 
     <Button
-        android:id="@+id/address_manager"
+        android:id="@+id/type_list"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/new_order_button_selector"
-        android:text="@string/address_manager"
+        android:text="@string/type_list"
         android:textColor="@color/color_white"
         android:textSize="18sp"/>
 </LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.fred.apple"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest
+    package="com.fred.apple"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,7 @@
         </activity>
         <activity android:name=".activity.TypeActivity"/>
         <activity android:name=".activity.OrderDetailActivity"/>
+        <activity android:name=".activity.TypeListActivity"/>
     </application>
 
 </manifest>
