@@ -175,7 +175,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         List<OptionValue> types = Lists.newArrayList();
         try {
             provinces = provinceDao.queryBuilder().where().eq("enable", true).query();
-            types = OptionValueDao.queryForAll();
+            types = OptionValueDao.queryBuilder().where().eq("is_deleted", false).query();
         } catch (SQLException e) {
             e.printStackTrace();
         }

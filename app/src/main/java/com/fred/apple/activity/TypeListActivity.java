@@ -124,6 +124,7 @@ public class TypeListActivity extends BaseActivity {
 
                         try {
                             optionValueDao.update(value);
+                            button.setText("已删除");
                             button.setBackgroundColor(Color.parseColor("#999999"));
                             button.setClickable(false);
                         } catch (SQLException e) {
