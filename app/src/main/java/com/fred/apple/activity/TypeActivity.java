@@ -62,7 +62,7 @@ public class TypeActivity extends BaseActivity {
 
                 Map<String, Object> params = new HashMap<>();
                 params.put("option_value", typeValue);
-                params.put("is_deleted", 0);
+                params.put("is_deleted", false);
 
                 try {
                     List<OptionValue> values = optionValueDao.queryForFieldValues(params);
