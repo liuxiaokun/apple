@@ -66,8 +66,7 @@ public class OrderDetailActivity extends BaseActivity implements View.OnClickLis
         userName.setText(mOrder.getUserName());
 
         TextView address = (TextView) findViewById(R.id.address);
-        mAddress = mOrder.getProvince() + SPACE + mOrder.getCity() + SPACE + mOrder.getArea() + SPACE
-                + mOrder.getAddress();
+        mAddress = mOrder.getAddress();
         address.setText(mAddress);
 
         TextView type = (TextView) findViewById(R.id.type);

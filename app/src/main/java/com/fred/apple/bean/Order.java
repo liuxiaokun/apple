@@ -20,16 +20,6 @@ public class Order implements Serializable {
     @DatabaseField(columnName = "user_name", canBeNull = false)
     private String userName;
 
-    // address related.
-    @DatabaseField(columnName = "province", canBeNull = false)
-    private String province;
-
-    @DatabaseField(columnName = "city", canBeNull = false)
-    private String city;
-
-    @DatabaseField(columnName = "area", canBeNull = false)
-    private String area;
-
     @DatabaseField(columnName = "address", canBeNull = false)
     private String address;
 
@@ -74,30 +64,6 @@ public class Order implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
     }
 
     public String getAddress() {

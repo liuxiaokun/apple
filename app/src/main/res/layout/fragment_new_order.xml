@@ -21,117 +21,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/item_province"
+            <com.fred.apple.view.MyEditText
+                android:id="@+id/edit_address"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/province"/>
-
-                <AutoCompleteTextView
-                    android:id="@+id/edit_province"
-                    style="@style/edit_item_style"
-                    android:completionThreshold="1"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
-
-            <LinearLayout
-                android:id="@+id/item_city"
+            <com.fred.apple.view.MyEditText
+                android:id="@+id/edit_name"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/city"/>
-
-                <AutoCompleteTextView
-                    android:id="@+id/edit_city"
-                    style="@style/edit_item_style"
-                    android:completionThreshold="1"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
-
-            <LinearLayout
-                android:id="@+id/item_area"
+            <com.fred.apple.view.MyEditText
+                android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/area"/>
-
-                <AutoCompleteTextView
-                    android:id="@+id/edit_area"
-                    style="@style/edit_item_style"
-                    android:completionThreshold="1"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
-
-            <LinearLayout
-                android:id="@+id/item_address"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/address"/>
-
-                <EditText
-                    android:id="@+id/edit_address"
-                    style="@style/edit_item_style"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
-
-            <LinearLayout
-                android:id="@+id/item_name"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/name"/>
-
-                <EditText
-                    android:id="@+id/edit_name"
-                    style="@style/edit_item_style"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
-
-            <LinearLayout
-                android:id="@+id/item_phone"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/phone"/>
-
-                <EditText
-                    android:id="@+id/edit_phone"
-                    style="@style/edit_item_style"
-                    android:inputType="phone"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/line"/>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/item_specifications"
@@ -147,27 +50,14 @@
                     android:id="@+id/edit_type"
                     style="@style/edit_item_style"
                     android:completionThreshold="1"/>
-
             </LinearLayout>
 
             <include layout="@layout/line"/>
 
-            <LinearLayout
-                android:id="@+id/item_quantity"
+            <com.fred.apple.view.MyEditText
+                android:id="@+id/edit_qty"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/order_item_common"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/edit_item_title_style"
-                    android:text="@string/quantity"/>
-
-                <EditText
-                    android:id="@+id/edit_qty"
-                    style="@style/edit_item_style"
-                    android:inputType="number"/>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
 
             <include layout="@layout/line"/>
 

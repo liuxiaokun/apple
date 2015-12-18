@@ -6,17 +6,12 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 
 import com.fred.apple.R;
 import com.fred.apple.activity.MainActivity;
-import com.fred.apple.bean.Area;
-import com.fred.apple.bean.City;
 import com.fred.apple.bean.OptionValue;
 import com.fred.apple.bean.Order;
-import com.fred.apple.bean.Province;
 import com.fred.apple.database.DatabaseHelper;
 import com.fred.apple.util.LogUtil;
 import com.fred.apple.util.StringUtil;
@@ -24,13 +19,11 @@ import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 import com.fred.apple.view.MyEditText;
 import com.fred.apple.view.WarningDialog;
-import com.google.common.collect.Lists;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,19 +36,13 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
     private MainActivity mMainActivity;
 
-    private AutoCompleteTextView mEditProvince;
-    private AutoCompleteTextView mEditCity;
-    private AutoCompleteTextView mEditArea;
-    private EditText mEditAddress;
-    private EditText mEditName;
-    private EditText mEditPhone;
+    private MyEditText mEditAddress;
+    private MyEditText mEditName;
+    private MyEditText mEditPhone;
     private AutoCompleteTextView mEditType;
-    private EditText mEditQty;
+    private MyEditText mEditQty;
     private MyEditText mEditPrice;
 
-//    private Dao<Province, Integer> provinceDao;
-//    private Dao<City, Integer> cityDao;
-//    private Dao<Area, Integer> areaDao;
     private Dao<Order, Integer> orderDao;
     private Dao<OptionValue, Integer> OptionValueDao;
 
@@ -64,9 +51,6 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mMainActivity = ((MainActivity) getActivity());
         DatabaseHelper databaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
-//        provinceDao = databaseHelper.getProvinceDao();
-//        cityDao = databaseHelper.getCityDao();
-//        areaDao = databaseHelper.getAreaDao();
         orderDao = databaseHelper.getOrderDao();
         OptionValueDao = databaseHelper.getOptionValueDao();
     }
@@ -79,59 +63,22 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         HeadView mHeadView = ((HeadView) view.findViewById(R.id.head_view));
         mHeadView.setTitleText(getResources().getString(R.string.new_order));
 
-        mEditProvince = ((AutoCompleteTextView) view.findViewById(R.id.edit_province));
 
-        mEditCity = ((AutoCompleteTextView) view.findViewById(R.id.edit_city));
-        mEditCity.setOnFocusChangeListener(new CityOnFocusListener());
+        mEditAddress = (MyEditText) view.findViewById(R.id.edit_address);
+        mEditAddress.setTitle("地址");
 
-        mEditArea = ((AutoCompleteTextView) view.findViewById(R.id.edit_area));
-        mEditArea.setOnFocusChangeListener(new AreaOnFocusListener());
+        mEditName = (MyEditText) view.findViewById(R.id.edit_name);
+        mEditName.setTitle("名字");
 
-        mEditAddress = ((EditText) view.findViewById(R.id.edit_address));
+        mEditPhone = (MyEditText) view.findViewById(R.id.edit_phone);
+        mEditPhone.setTitle("手机");
 
-        mEditName = ((EditText) view.findViewById(R.id.edit_name));
+        mEditType = (AutoCompleteTextView) view.findViewById(R.id.edit_type);
 
-        mEditPhone = ((EditText) view.findViewById(R.id.edit_phone));
+        mEditQty = (MyEditText) view.findViewById(R.id.edit_qty);
+        mEditQty.setTitle("数量");
 
-        mEditType = ((AutoCompleteTextView) view.findViewById(R.id.edit_type));
-
-        mEditQty = ((EditText) view.findViewById(R.id.edit_qty));
-
-        mEditPrice = ((MyEditText) view.findViewById(R.id.edit_price));
-
-        List<Province> provinces = Lists.newArrayList();
-        List<OptionValue> types = Lists.newArrayList();
-        try {
-            provinces = provinceDao.queryBuilder().where().eq("enable", true).query();
-            types = OptionValueDao.queryBuilder().where().eq("is_deleted", false).query();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        int size = provinces.size();
-        LogUtil.i("province size:", String.valueOf(size));
-        String[] provincesArray = new String[size];
-
-        for (int i = 0; i < size; i++) {
-            provincesArray[i] = provinces.get(i).getProvinceName();
-        }
-
-        if (types != null && types.size() > 0) {
-            String[] typesArray = new String[types.size()];
-
-            for (int i = 0; i < types.size(); i++) {
-                typesArray[i] = types.get(i).getOptionValue();
-            }
-
-            ArrayAdapter<String> typesAdapter = new ArrayAdapter<>(mMainActivity,
-                    android.R.layout.simple_list_item_1, typesArray);
-            mEditType.setAdapter(typesAdapter);
-        }
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(mMainActivity,
-                android.R.layout.simple_list_item_1, provincesArray);
-        mEditProvince.setAdapter(arrayAdapter);
-
+        mEditPrice = (MyEditText) view.findViewById(R.id.edit_price);
         mEditPrice.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEditPrice.setTitle("总价");
 
@@ -147,25 +94,19 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
             case R.id.new_order:
 
-                String provinceName = mEditProvince.getText().toString();
-                String cityName = mEditCity.getText().toString();
-                String areaName = mEditArea.getText().toString();
-                String addressName = mEditAddress.getText().toString();
-                String name = mEditName.getText().toString();
-                String phone = mEditPhone.getText().toString();
-                String type = mEditType.getText().toString();
-                String qty = mEditQty.getText().toString();
+                String addressName = mEditAddress.getText().trim();
+                String name = mEditName.getText().trim();
+                String phone = mEditPhone.getText().trim();
+                String type = mEditType.getText().toString().trim();
+                String qty = mEditQty.getText().trim();
                 String price = mEditPrice.getText();
 
-                if (paramCheck(provinceName, cityName, areaName, addressName,
+                if (paramCheck(addressName,
                         name, phone, type, qty, price)) {
                     return;
                 }
 
                 Order order = new Order();
-                order.setProvince(provinceName);
-                order.setCity(cityName);
-                order.setArea(areaName);
                 order.setAddress(addressName);
                 order.setUserName(name);
                 order.setTelephone(phone);
@@ -206,22 +147,7 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private boolean paramCheck(String provinceName, String cityName, String areaName, String addressName, String name, String phone, String type, String qty, String price) {
-
-        if (StringUtil.isEmpty(provinceName)) {
-            ToastUtil.shortShow(mMainActivity, "省份不能为空!");
-            return true;
-        }
-
-        if (StringUtil.isEmpty(cityName)) {
-            ToastUtil.shortShow(mMainActivity, "城市不能为空!");
-            return true;
-        }
-
-        if (StringUtil.isEmpty(areaName)) {
-            ToastUtil.shortShow(mMainActivity, "区县不能为空!");
-            return true;
-        }
+    private boolean paramCheck(String addressName, String name, String phone, String type, String qty, String price) {
 
         if (StringUtil.isEmpty(addressName)) {
             ToastUtil.shortShow(mMainActivity, "地址不能为空!");
@@ -266,96 +192,12 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
 
     private void clearData() {
 
-        mEditProvince.setText(StringUtil.EMPTY);
-        mEditCity.setText(StringUtil.EMPTY);
-        mEditArea.setText(StringUtil.EMPTY);
         mEditAddress.setText(StringUtil.EMPTY);
         mEditName.setText(StringUtil.EMPTY);
         mEditPhone.setText(StringUtil.EMPTY);
         mEditType.setText(StringUtil.EMPTY);
         mEditQty.setText(StringUtil.EMPTY);
         mEditPrice.setText(StringUtil.EMPTY);
-    }
-
-    private class CityOnFocusListener implements View.OnFocusChangeListener {
-
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-
-            if (hasFocus) {
-                String provinceName = mEditProvince.getText().toString().trim();
-
-                if (StringUtil.isNotEmpty(provinceName)) {
-                    try {
-                        Province province = provinceDao.queryBuilder().where().eq
-                                ("province_name", provinceName).queryForFirst();
-
-                        if (null == province) {
-                            return;
-                        }
-                        List<City> cities = cityDao.queryBuilder().where().eq("province_id",
-                                province.getProvinceId()).query();
-
-                        if (cities != null && !cities.isEmpty()) {
-
-                            int size = cities.size();
-                            LogUtil.i("cities size:", String.valueOf(size));
-                            String[] cityArray = new String[size];
-
-                            for (int i = 0; i < size; i++) {
-                                cityArray[i] = cities.get(i).getCityName();
-                            }
-
-                            ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(mMainActivity,
-                                    android.R.layout.simple_list_item_1, cityArray);
-                            mEditCity.setAdapter(cityAdapter);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-    }
-
-    private class AreaOnFocusListener implements View.OnFocusChangeListener {
-        @Override
-        public void onFocusChange(View view, boolean hasFocus) {
-
-            if (hasFocus) {
-                String cityName = mEditCity.getText().toString().trim();
-
-                if (StringUtil.isNotEmpty(cityName)) {
-                    try {
-                        City city = cityDao.queryBuilder().where().eq
-                                ("city_name", cityName).queryForFirst();
-
-                        if (null == city) {
-                            return;
-                        }
-                        List<Area> areas = areaDao.queryBuilder().where().eq("city_id",
-                                city.getCityId()).query();
-
-                        if (areas != null && !areas.isEmpty()) {
-
-                            int size = areas.size();
-                            LogUtil.i("areas size:", String.valueOf(size));
-                            String[] areaArray = new String[size];
-
-                            for (int i = 0; i < size; i++) {
-                                areaArray[i] = areas.get(i).getAreaName();
-                            }
-
-                            ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(mMainActivity,
-                                    android.R.layout.simple_list_item_1, areaArray);
-                            mEditArea.setAdapter(areaAdapter);
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
     }
 }
 

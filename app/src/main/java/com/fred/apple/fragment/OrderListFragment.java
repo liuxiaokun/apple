@@ -109,9 +109,7 @@ public class OrderListFragment extends Fragment {
             }
 
             Order order = getItem(position);
-            viewHolder.mTextViewAddress.setText(order.getProvince() + StringUtil.SPACE + order.getCity()
-                    + StringUtil.SPACE + order.getArea()
-                    + StringUtil.SPACE + order.getAddress());
+            viewHolder.mTextViewAddress.setText(order.getAddress());
 
             viewHolder.mTextViewName.setText(order.getUserName());
             viewHolder.mTextViewPhone.setText(order.getTelephone());
