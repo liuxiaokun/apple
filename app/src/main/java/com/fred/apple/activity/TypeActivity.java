@@ -15,6 +15,9 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -50,15 +53,30 @@ public class TypeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                String typeName = mMyEditTextName.getText();
+                String typeValue = mMyEditTextName.getText().trim();
 
-                if (StringUtil.isEmpty(typeName)) {
+                if (StringUtil.isEmpty(typeValue)) {
                     ToastUtil.shortShow(TypeActivity.this, "规格名字不能为空!");
                     return;
                 }
 
+                Map<String, Object> params = new HashMap<>();
+                params.put("option_value", typeValue);
+                params.put("is_deleted", 0);
+
+                try {
+                    List<OptionValue> values = optionValueDao.queryForFieldValues(params);
+
+                    if (values.size() > 0) {
+                        ToastUtil.shortShow(TypeActivity.this, "规格已经存在!");
+                        return;
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
                 OptionValue optionValue = new OptionValue();
-                optionValue.setOptionValue(typeName);
+                optionValue.setOptionValue(typeValue);
                 optionValue.setOptionId(1);
                 try {
                     int result = optionValueDao.create(optionValue);
