@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
 import com.fred.apple.R;
@@ -19,11 +20,13 @@ import com.fred.apple.util.ToastUtil;
 import com.fred.apple.view.HeadView;
 import com.fred.apple.view.MyEditText;
 import com.fred.apple.view.WarningDialog;
+import com.google.common.collect.Lists;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,6 +84,25 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         mEditPrice = (MyEditText) view.findViewById(R.id.edit_price);
         mEditPrice.setInputType(InputType.TYPE_CLASS_NUMBER);
         mEditPrice.setTitle("总价");
+
+        List<OptionValue> types = Lists.newArrayList();
+        try {
+            types = OptionValueDao.queryBuilder().where().eq("is_deleted", false).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (types != null && types.size() > 0) {
+            String[] typesArray = new String[types.size()];
+
+            for (int i = 0; i < types.size(); i++) {
+                typesArray[i] = types.get(i).getOptionValue();
+            }
+
+            ArrayAdapter<String> typesAdapter = new ArrayAdapter<>(mMainActivity,
+                    android.R.layout.simple_list_item_1, typesArray);
+            mEditType.setAdapter(typesAdapter);
+        }
 
         view.findViewById(R.id.new_order).setOnClickListener(this);
 
