@@ -53,9 +53,9 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
     private EditText mEditQty;
     private MyEditText mEditPrice;
 
-    private Dao<Province, Integer> provinceDao;
-    private Dao<City, Integer> cityDao;
-    private Dao<Area, Integer> areaDao;
+//    private Dao<Province, Integer> provinceDao;
+//    private Dao<City, Integer> cityDao;
+//    private Dao<Area, Integer> areaDao;
     private Dao<Order, Integer> orderDao;
     private Dao<OptionValue, Integer> OptionValueDao;
 
@@ -64,9 +64,9 @@ public class NewOrderFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mMainActivity = ((MainActivity) getActivity());
         DatabaseHelper databaseHelper = OpenHelperManager.getHelper(mMainActivity, DatabaseHelper.class);
-        provinceDao = databaseHelper.getProvinceDao();
-        cityDao = databaseHelper.getCityDao();
-        areaDao = databaseHelper.getAreaDao();
+//        provinceDao = databaseHelper.getProvinceDao();
+//        cityDao = databaseHelper.getCityDao();
+//        areaDao = databaseHelper.getAreaDao();
         orderDao = databaseHelper.getOrderDao();
         OptionValueDao = databaseHelper.getOptionValueDao();
     }
