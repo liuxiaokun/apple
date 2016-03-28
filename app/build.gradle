@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.fred.apple"
-        minSdkVersion 11
-        targetSdkVersion 23
+        minSdkVersion 9
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -27,4 +27,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.google.guava:guava:18.0'
+    compile files('libs/GetuiExt-2.0.3.jar')
+    compile files('libs/GetuiSDK2.8.1.0.jar')
+    compile 'com.android.support:support-v4'
 }

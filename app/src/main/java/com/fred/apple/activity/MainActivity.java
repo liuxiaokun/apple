@@ -12,6 +12,7 @@ import com.fred.apple.fragment.OrderListFragment;
 import com.fred.apple.fragment.OtherFragment;
 import com.fred.apple.fragment.SettingFragment;
 import com.fred.apple.util.DensityUtil;
+import com.igexin.sdk.PushManager;
 
 /**
  * @author Fred Liu (liuxiaokun0410@gmail.com)
@@ -35,7 +36,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("destiny", DensityUtil.px2dp(this, 1) + "");
+        PushManager.getInstance().initialize(this.getApplicationContext());
+
         initUi();
         initEvent();
         mRadioButtonNewOrder.performClick();
